@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import Topbar from './components/topbar/Topbar.jsx'
+import './app.css'
+import Sidebar from './components/sidebar/Sidebar.jsx';
+import Dashboard from './pages/dashboard/Dashboard.jsx';
+import Bookings from './pages/bookings/Bookings.jsx';
+import Reports from './pages/reports/Reports.jsx';
+import Feedback from './pages/feedback/Feedback.jsx';
+import Settings from './pages/settings/Settings.jsx';
+import ErrorPage from './pages/errorpage/ErrorPage.jsx'
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Topbar/>
+      <div className="container">
+        <Sidebar/>  
+        <Routes>
+          <Route path="/" element={<Dashboard />}/>
+          <Route path="/dashboard" element={<Dashboard />}/>
+          <Route path="/bookings" element={<Bookings />}/>
+          <Route path="/reports" element={<Reports />}/>
+          <Route path="/feedback" element={<Feedback />}/>
+          <Route path="/settings" element={<Settings />}/>
+          <Route path="*" element={<ErrorPage />}/>
+        </Routes>
+      </div>
     </div>
   );
 }

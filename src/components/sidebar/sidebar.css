@@ -1,0 +1,36 @@
+.sidebar {
+    flex: 1;
+    background-color: #89AFB4;
+    height: calc(100vh - 60px);
+    position: sticky;
+    top: 60px;
+}
+
+.sidebarWrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+}
+
+.sidebarMenu {
+    flex: 4;
+    /* margin-top: 10px; */
+}
+
+.sidebarTitle {
+    padding: 20px;
+    color: #FFFFFF;
+    font-weight: 400;
+    border-bottom: 2px solid #a2d0e7;
+    display: flex;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.footer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

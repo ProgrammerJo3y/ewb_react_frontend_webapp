@@ -1,0 +1,43 @@
+.topbar {
+    width: 100%;
+    height: 60px;
+    background-color: #C4C4C4;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.topbarWrapper{
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.heading {
+    font-weight: bold;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.topbarRHSWrapper {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.profileWrapper{
+    display: flex;
+    align-items: center;
+}
+
+.profile{
+    padding-left: 10px;
+}
+img {
+    max-width: 15%;
+    height: auto;
+  }
