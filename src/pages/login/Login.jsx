@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import './Login.css';
+import './login.css';
 
 async function loginUser(credentials) {
     // Call to the server to retrieve the token

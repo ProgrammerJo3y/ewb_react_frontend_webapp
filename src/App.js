@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Topbar from './components/topbar/Topbar.jsx'
-import './App.css'
+import './app.css'
 import Sidebar from './components/sidebar/Sidebar.jsx';
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import Bookings from './pages/bookings/Bookings.jsx';
