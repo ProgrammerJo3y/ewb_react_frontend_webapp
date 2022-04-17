@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './login.css';
+import logo from './mammalaef.png'
 
 async function loginUser(credentials) {
     // Call to the server to retrieve the token
@@ -27,17 +28,18 @@ export default function Login({ setToken }) {
     return (
         <div className="login-inputs-wrapper">
             <h1>EWB Administrator Portal Login</h1>
+            <img src={logo} alt= "Logo"/>
             <form onSubmit={ handleSubmit }>
                 <label>
-                    <p>Username</p>
+                    <p className='header-text'>Username</p>
                     <input type="text" onChange={e => setUsername(e.target.value)} />
                 </label>
                 <label>
-                    <p>Password</p>
+                    <p className='header-text'>Password</p>
                     <input type="password" onChange={e => setPassword(e.target.value)} />
                 </label>
-                <div>
-                    <button type="submit">Submit</button>
+                <div className='submit-button-div'>
+                    <button type="submit" className='submit-button'>Submit</button>
                 </div>
             </form>
         </div>
