@@ -1,23 +1,57 @@
+.holder {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    background-color: aliceblue;
+    margin: 0 auto;
+    position: relative;
+}
+
+.left-side {
+    float: left; 
+}
+
+.img-nappy {
+    min-width: 100%;
+    height: 100vh;
+    min-height: 100%;
+}
+
 .login-inputs-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 700px;
-    margin-top: 100px;
-    background-color: aliceblue;
-    padding: 100px;
-    padding-bottom: 200px;
+    background: #EFFCFF;
+    min-height: 100vmin;
+}
+
+.heading-text {
+    padding: 50px;
 }
 
 .header-text {
-    padding: 5px;
+    padding: 10px;
+    font-weight: bold;
 }
 
 .submit-button-div {
-    padding: 10px;
+    padding-top: 20px;
 }
 
 .submit-button {
-    background-color: darkblue;
     color: white;
+    width: 150px;
+    height: 30px;
+    background-color: #89AFB4;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+}
+
+.submit-button:hover {
+    background-color: #D8EDB9;
+    color: black;
+}
+
+.copyright-text {
+    margin-top: 40%;
 }
