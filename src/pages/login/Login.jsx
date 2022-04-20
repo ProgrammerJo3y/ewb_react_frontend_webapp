@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './login.css';
-import logo from './mammalaef.png';
-import nappy from './NappiesOnWashingLine.jpg'
+import logo from './../../assets/images/mammaslaeflogo.png'
+import nappy from './../../assets/images/NappiesOnWashingLine.jpg'
 
 async function loginUser(credentials) {
     // Call to the server to retrieve the token

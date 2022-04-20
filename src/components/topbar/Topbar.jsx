@@ -1,6 +1,6 @@
 import React from 'react'
 import "./topbar.css"
-import mamaLeafLogo from "./mamaleaf.png"
+import mamaLeafLogo from "./../../assets/images/mammaslaeflogo.png"
 import { FaRegUserCircle } from "react-icons/fa";
 
 export default function topbar() {
