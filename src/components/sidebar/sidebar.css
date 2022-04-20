@@ -18,11 +18,33 @@
     /* margin-top: 10px; */
 }
 
-.sidebarTitle {
+.sidebarInactive {
     padding: 20px;
     color: #FFFFFF;
     font-weight: 400;
     border-bottom: 2px solid #a2d0e7;
+    display: flex;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebarInactive:hover {
+    padding: 20px;
+    color: #FFFFFF;
+    font-weight: 400;
+    border-bottom: 2px solid #a2d0e7;
+    background-color: #F9E5B4;
+    display: flex;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sidebarActive {
+    padding: 20px;
+    color: #FFFFFF;
+    font-weight: 400;
+    border-bottom: 2px solid #a2d0e7;
+    background-color: #F7D47A;
     display: flex;
     text-decoration: none;
     font-size: 18px;
