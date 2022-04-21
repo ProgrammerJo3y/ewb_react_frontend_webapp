@@ -1,31 +1,22 @@
 import './dashboard.css'
+import Table from '../../components/table/Table.jsx'
+import Card from '../../components/card/Card.jsx'
 
 export default function Dashboard() {
   return (
     <div className="dashboard">
         <h1>Dashboard</h1>
-        <p>Machine Issues</p>
-        <p>Income Errors</p>
-        <p>New Feedback</p>
+
+        <div className="cards">
+        <Card title="Machine Issues"/>
+        <Card title="Income Errors"/>
+        <Card title="New Feedback"/>
+        </div>
+
+        <div>
         <h2>Washing Machine Details</h2>
-        <table>
-          <tr>
-            <th>ID</th>
-            <th>Location</th>
-            <th>Bookings</th>
-            <th>Errors</th>
-            <th>Feedback</th>
-            <th>View</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Port Villa</td>
-            <td>101</td>
-            <td></td>
-            <td>Handle worn down</td>
-            <td></td>
-          </tr>
-        </table>
+        <Table/>
+        </div>
     </div>
   )
 }

@@ -4,10 +4,14 @@
     padding: 3%;
 }
 
-.card{
-
-}
-
 h1{
     
+}
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: auto;
+    width: auto;
 }

@@ -1,0 +1,15 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    margin: 3%;   
+    background-color: white;
+    width: 40%;
+    
+
+}
+
+.cardTitle{
+    margin: 5%;
+    font-size: 25px;
+    
+}
