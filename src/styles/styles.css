@@ -1,0 +1,14 @@
+:root {
+    /* Sidebar, header and footer colours */
+    --navitem-border: #009f4c;
+    --sidebar-background: white;
+    --header-background: white;
+    
+    /* Main colour palette */
+    --background-colour: white;
+    --highlight-colour: #009f4c;
+    --highlight-secondary-colour: #7ec78f;
+    --heading-colour: black;
+    --subheading-colour: #7ec78f;
+    --body-text-colour: #707070;
+}
