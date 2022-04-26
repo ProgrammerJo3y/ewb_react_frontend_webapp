@@ -34,14 +34,14 @@ export default function Login({ setToken }) {
             <div className="login-inputs-wrapper">
                 <h1 className='heading-text'>EWB Administrator Portal Login</h1>
                 <img src={logo} alt= "Logo"/>
-                <form onSubmit={ handleSubmit }>
+                <form className='form' onSubmit={ handleSubmit }>
                     <label>
                         <p className='header-text'>Username</p>
-                        <input type="text" onChange={e => setUsername(e.target.value)} />
+                        <input className='input' type="text" onChange={e => setUsername(e.target.value)} />
                     </label>
                     <label>
                         <p className='header-text'>Password</p>
-                        <input type="password" onChange={e => setPassword(e.target.value)} />
+                        <input className='input' type="password" onChange={e => setPassword(e.target.value)} />
                     </label>
                     <div className='submit-button-div'>
                         <button type="submit" className='submit-button'>Submit</button>

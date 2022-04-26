@@ -6,6 +6,10 @@
     position: relative;
 }
 
+.form {
+    text-align: left;
+}
+
 .left-side {
     float: left; 
 }
@@ -29,8 +33,14 @@
 }
 
 .header-text {
-    padding: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     font-weight: bold;
+}
+
+.input {
+    width: 150px;
+    align-self: center;
 }
 
 .submit-button-div {
@@ -39,7 +49,7 @@
 
 .submit-button {
     color: white;
-    width: 150px;
+    width: 160px;
     height: 30px;
     background-color: #89AFB4;
     border-radius: 12px;
