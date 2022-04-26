@@ -11,6 +11,7 @@ import Settings from './pages/settings/Settings.jsx';
 import ErrorPage from './pages/errorpage/ErrorPage.jsx'
 import Login from './pages/login/Login.jsx'
 import { Routes, Route } from 'react-router-dom';
+import {gql, useQuery} from '@apollo/client'
 
 function App() {
 

@@ -6,7 +6,7 @@ import {ApolloClient, HttpLink, InMemoryCache, ApolloProvider} from "@apollo/cli
 
 const client = new ApolloClient({
   link: new HttpLink({
-    uri: "https://n-api-sigma.vercel.app/"
+    uri: "https://n-api-sigma.vercel.app/api/graphql"
   }),
   cache: new InMemoryCache()
 })

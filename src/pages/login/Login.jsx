@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './login.css';
 import logo from './../../assets/images/mammaslaeflogo.png'
 import nappy from './../../assets/images/NappiesOnWashingLine.jpg'
+import {gql, useMutation, useQuery} from '@apollo/client'
 
 async function loginUser(credentials) {
     // Call to the server to retrieve the token
