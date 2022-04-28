@@ -6,26 +6,30 @@
     position: relative;
 }
 
+
 .form {
     text-align: left;
 }
 
 .left-side {
-    float: left; 
+    float: left;
+    overflow: hidden;
 }
 
 .img-nappy {
+    overflow: hidden;
     min-width: 100%;
-    height: 100vh;
-    min-height: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .login-inputs-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #EFFCFF;
+    background: var(--background-colour);
     min-height: 100vmin;
+    height: 100vh;
 }
 
 .heading-text {
@@ -51,17 +55,18 @@
     color: white;
     width: 160px;
     height: 30px;
-    background-color: #89AFB4;
+    background-color: var(--highlight-colour);
     border-radius: 12px;
     font-weight: bold;
     border: 2px solid #ffffff;
 }
 
 .submit-button:hover {
-    background-color: #D8EDB9;
-    color: black;
+    background-color: var(--highlight-secondary-colour);
+    border: 2px solid var(--highlight-colour);
+    color: white;
 }
 
 .copyright-text {
-    margin-top: 40%;
+    margin-top: auto;
 }
