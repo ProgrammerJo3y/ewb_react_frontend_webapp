@@ -1,0 +1,11 @@
+//MUTATIONS
+
+export const admin_sign_in = gql`
+mutation AdminSignIn($username: String!, $password: String!) {
+    adminSignIn(username: $username, password: $password) {
+        token
+        error
+    }
+}
+`;
+

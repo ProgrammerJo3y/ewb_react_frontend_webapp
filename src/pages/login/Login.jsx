@@ -5,15 +5,7 @@ import './login.css';
 import logo from './../../assets/images/mammaslaeflogo.png';
 import nappy from './../../assets/images/NappiesOnWashingLine.jpg';
 import { gql, useMutation } from '@apollo/client';
-
-const admin_sign_in = gql`
-	mutation AdminSignIn($username: String!, $password: String!) {
-		adminSignIn(username: $username, password: $password) {
-			token
-			error
-		}
-	}
-`;
+import { admin_sign_in } from './../../graphql/mutations.gql'
 
 export default function Login({ setToken }) {
 	const [username, setUsername] = useState(' ');
