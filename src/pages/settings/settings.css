@@ -1,4 +1,15 @@
-.settings{
+.settings-div{
     flex: 5;
     background-color: #CFEEFD;
+    padding: 20px;
+}
+
+.fields-div {
+    padding-top: 20px;
+    margin-left: 10px;
+}
+
+.settings-field {
+    font-weight: bold;
+    padding-top: 20px;
 }
