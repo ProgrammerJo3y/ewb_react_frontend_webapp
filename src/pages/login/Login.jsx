@@ -5,6 +5,7 @@ import './login.css';
 import logo from './../../assets/images/mammaslaeflogo.png';
 import nappy from './../../assets/images/NappiesOnWashingLine.jpg';
 import { gql, useMutation } from '@apollo/client';
+
 const admin_sign_in = gql`
 	mutation AdminSignIn($username: String!, $password: String!) {
 		adminSignIn(username: $username, password: $password) {
@@ -19,8 +20,6 @@ export default function Login({ setToken }) {
 	const [password, setPassword] = useState(' ');
 	const [AdminSignIn, { token, error }] = useMutation(admin_sign_in);
 
-	// Dummy form submit function taking credentials
-	// TODO: Call 'loginUser(credentials)' and set token with response
 	const handleSubmit = async e => {
 		e.preventDefault();
 		const token = await loginUser({
@@ -30,8 +29,6 @@ export default function Login({ setToken }) {
 		setToken(token);
 	};
 	async function loginUser(credentials) {
-		console.log('username', credentials?.username2);
-		console.log('pass', credentials?.password2);
 		const user = await AdminSignIn({
 			// username: credentials?.username2.toString(),
 			// password: credentials?.password2.toString()
@@ -41,11 +38,6 @@ export default function Login({ setToken }) {
 				error
 			}
 		});
-		console.log(user.data.adminSignIn.token);
-		// console.log('error', user.result.error);
-		// console.log('token', user.result.token);
-
-		// Call to the server to retrieve the token
 		// Currently returns a "positive" resolution to the async call, rather than undefined (i.e., always returns a token)
 		return Promise.resolve(1);
 	}
