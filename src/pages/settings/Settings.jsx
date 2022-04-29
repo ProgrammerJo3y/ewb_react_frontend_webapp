@@ -1,7 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, Component} from 'react';
 import './settings.css'
 
-export default function Settings() {
+export default function Settings(){
+  const username_state = {
+    value: "Some name",
+    isInEditMode: false
+  }
+
+  const password_state = {
+    value: "Some password",
+    isInEditMode: false
+  }
+
+  const email_state = {
+    value: "Some email",
+    isInEditMode: false
+  }
+
   return (
     <div className="settings-div">
       <h1> Settings </h1>
