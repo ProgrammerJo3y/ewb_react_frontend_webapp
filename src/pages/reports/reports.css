@@ -1,4 +1,28 @@
 .reportsContainer{
     flex: 5;
-    background-color: #CFEEFD;
+    width: 100vh;
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+}
+
+.reportsHeader{
+    background-color: #CDCDCD;
+}
+
+.reports {
+    display: flex;
+    flex-direction: row;
+    min-height: 65vh;
+}
+
+.reportsFilter {
+    flex: 1 1 auto;
+    background-color: #CDCDCD;
+}
+
+.reportsGraph {
+    flex: 1 1 auto;
+    max-height: inherit;
+    background-color: #CDCDCD;
 }
