@@ -13,11 +13,29 @@ export default function Table() {
             <th>View</th>
           </tr>
           <tr>
-            <td>1</td>
-            <td>Port Villa</td>
-            <td>101</td>
             <td></td>
-            <td>Handle worn down</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td></td>
           </tr>
         </table>
