@@ -1,0 +1,72 @@
+.holder {
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    background-color: aliceblue;
+    margin: 0 auto;
+    position: relative;
+}
+
+
+.form {
+    text-align: left;
+}
+
+.left-side {
+    float: left;
+    overflow: hidden;
+}
+
+.img-nappy {
+    overflow: hidden;
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.login-inputs-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--background-colour);
+    min-height: 100vmin;
+    height: 100vh;
+}
+
+.heading-text {
+    padding: 50px;
+}
+
+.header-text {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-weight: bold;
+}
+
+.input {
+    width: 150px;
+    align-self: center;
+}
+
+.submit-button-div {
+    padding-top: 20px;
+}
+
+.submit-button {
+    color: white;
+    width: 160px;
+    height: 30px;
+    background-color: var(--highlight-colour);
+    border-radius: 12px;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+}
+
+.submit-button:hover {
+    background-color: var(--highlight-secondary-colour);
+    border: 2px solid var(--highlight-colour);
+    color: white;
+}
+
+.copyright-text {
+    margin-top: auto;
+}

@@ -1,37 +1,37 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-import './login.css';
+import './signup.css';
 import logo from './../../assets/images/mammaslaeflogo.png';
 import nappy from './../../assets/images/NappiesOnWashingLine.jpg';
 import { useMutation } from '@apollo/client';
-import { admin_sign_in } from '../../graphql/mutations.jsx'
+import { admin_sign_up } from '../../graphql/mutations.jsx'
 
 export default function Login({ setToken }) {
 	const [username, setUsername] = useState(' ');
 	const [password, setPassword] = useState(' ');
-	const [AdminSignIn, { token, error }] = useMutation(admin_sign_in);
+	const [AdminSignUp, { token, error }] = useMutation(admin_sign_up);
 
 	const handleSubmit = async e => {
-		e.preventDefault();
-		const token = await loginUser({
-			username2: username,
-			password2: password
-		});
-		setToken(token);
+		// e.preventDefault();
+		// const token = await signUpUser({
+		// 	username2: username,
+		// 	password2: password
+		// });
+		// setToken(token);
 	};
-	async function loginUser(credentials) {
-		const user = await AdminSignIn({
-			// username: credentials?.username2.toString(),
-			// password: credentials?.password2.toString()
-			variables: { username: credentials?.username2, password: credentials?.password2 },
-			result: {
-				token,
-				error
-			}
-		});
-		// Currently returns a "positive" resolution to the async call, rather than undefined (i.e., always returns a token)
-		return Promise.resolve(1);
+	async function signUpUser(credentials) {
+		// const user = await AdminSignUp({
+		// 	// username: credentials?.username2.toString(),
+		// 	// password: credentials?.password2.toString()
+		// 	variables: { username: credentials?.username2, password: credentials?.password2 },
+		// 	result: {
+		// 		token,
+		// 		error
+		// 	}
+		// });
+		// // Currently returns a "positive" resolution to the async call, rather than undefined (i.e., always returns a token)
+		// return Promise.resolve(1);
 	}
 
 	return (
@@ -63,6 +63,6 @@ export default function Login({ setToken }) {
 	);
 }
 
-Login.propTypes = {
+SignUp.propTypes = {
 	setToken: PropTypes.func.isRequired
 };
