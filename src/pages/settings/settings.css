@@ -18,8 +18,12 @@
     flex-direction: column;
 }
 
+.settings-submit-button-div {
+    float: right;
+    bottom: 0;
+}
+
 .settings-submit {
-    flex-direction: flex-end;
     color: white;
     width: 150px;
     height: 30px;

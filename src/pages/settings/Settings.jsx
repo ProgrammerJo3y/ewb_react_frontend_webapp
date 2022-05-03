@@ -38,7 +38,7 @@ export default function Settings(){
           <input type="text" value="j_doe@ewb.org.au" />
         </label>
       </div>
-      <div className='submit-button-div'>
+      <div className='settings-submit-button-div'>
         <button type="submit" className='settings-submit'>Submit</button>
       </div>
     </div>
