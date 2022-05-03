@@ -9,7 +9,27 @@
     margin-left: 10px;
 }
 
-.settings-field {
+.settings-text {
     font-weight: bold;
     padding-top: 20px;
+}
+
+.settings-fields {
+    flex-direction: column;
+}
+
+.settings-submit {
+    flex-direction: flex-end;
+    color: white;
+    width: 150px;
+    height: 30px;
+    background-color: #89AFB4;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+}
+
+.settings-submit:hover {
+    background-color: #D8EDB9;
+    color: black;
 }
