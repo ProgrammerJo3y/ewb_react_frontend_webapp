@@ -55,6 +55,9 @@ export default function Login({ setToken }) {
 						<button type="submit" className="submit-button">
 							Submit
 						</button>
+						<button type="submit" className="signup-button">
+							Sign Up
+						</button>
 					</div>
 				</form>
 				<p className="copyright-text"> © Mammalaef 2022</p>
