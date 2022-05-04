@@ -1,0 +1,28 @@
+/*
+
+    This styling sheet exists to maintain styling consistency across the application through html element styling
+    , variables defining colour scheme, and additional variables to track variables such as padding and margins.
+
+    Class selectors should be applied within styling sheets accompanying the component or page to be applied on.
+    Any additional shared variables can be added as required.
+
+*/
+
+:root {
+    /* Sidebar, header and footer colours */
+    --navitem-border: #009f4c;
+    --sidebar-background: white;
+    --header-background: white;
+    
+    /* Main colour palette */
+    --background-colour: white;
+    --highlight-colour: #009f4c;
+    --highlight-secondary-colour: #7ec78f;
+    --heading-colour: black;
+    --subheading-colour: #7ec78f;
+    --body-text-colour: #707070;
+}
+
+.p {
+    color: var(--body-text-colour);
+}
