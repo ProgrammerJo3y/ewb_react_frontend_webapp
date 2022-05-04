@@ -1,13 +1,16 @@
 .reportsContainer{
     flex: 5;
     width: 100vh;
-    margin: 20px;
     padding: 20px;
     background-color: white;
 }
 
 .reportsHeader{
-    background-color: #CDCDCD;
+    border-color: #CDCDCD;
+    margin: 0px 10px 10px 10px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #CDCDCD;
+    /* border-radius: 10px; */
 }
 
 .reports {
@@ -17,12 +20,22 @@
 }
 
 .reportsFilter {
-    flex: 1 1 auto;
-    background-color: #CDCDCD;
+    flex: 1 2 auto;
+    margin: 10px;
+    padding: 10px;
+    border-style:solid;
+    border-color: #CDCDCD;
+    border-width: 2px;
+    border-radius: 10px;
 }
 
 .reportsGraph {
-    flex: 1 1 auto;
+    flex: 2 1 auto;
+    margin: 10px;
+    padding: 10px;
     max-height: inherit;
-    background-color: #CDCDCD;
+    border-style:solid;
+    border-color: #CDCDCD;
+    border-width: 2px;
+    border-radius: 10px;
 }
