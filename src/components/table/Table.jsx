@@ -9,21 +9,10 @@ export default function Table() {
             <th>Location</th>
             <th>Bookings</th>
             <th>Errors</th>
-            <th>Feedback</th>
             <th>View</th>
           </tr>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-
-          <tr>
-            <td></td>
-            <td></td>
+            <td>  </td>
             <td></td>
             <td></td>
             <td></td>
@@ -32,6 +21,13 @@ export default function Table() {
 
           <tr>
             <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+
+          <tr>
             <td></td>
             <td></td>
             <td></td>
