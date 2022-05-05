@@ -2,6 +2,7 @@
 
 .sidebar {
     width: 30vh;
+    padding: 0px 10px 0px 10px;
     background-color: var(--sidebar-background);
     height: calc(100vh - 61px);
     position: sticky;
