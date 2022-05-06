@@ -1,6 +1,8 @@
 import './reports.css'
+import Barchart from '../../components/barchart/Barchart'
+
 import { useState} from 'react'
-import { Select, FormControl, MenuItem, InputLabel, Radio, RadioGroup, FormLabel, FormControlLabel, TextField, Stack } from '@mui/material'
+import { Select, FormControl, MenuItem, InputLabel, Radio, RadioGroup, FormLabel, FormControlLabel, TextField, Checkbox } from '@mui/material'
 
 
 export default function Reports() {
@@ -25,7 +27,7 @@ export default function Reports() {
 
   // Filters for bookings
   const [completedFilter, setCompletedFilter] = useState(true); // Show all completed bookings
-  const [cancelledFilter, setCancelledFilter] = useState('cancelledFilter'); // Show all cancelled bookings
+  const [cancelledFilter, setCancelledFilter] = useState(false); // Show all cancelled bookings
   const [startTimeFilter, setStartTimeFilter] = useState('startTimeFilter'); // Additional filter by time of day
   const [endTimeFilter, setEndTimeFilter] = useState('endTimeFilter');
   const [bookingCostFilter, setBookingCostFilter] = useState(-1); // Upper cost bound for bookings. Negative includes all
@@ -49,7 +51,22 @@ export default function Reports() {
           <h2>Filter</h2>
           
           <h3>Data</h3>
-
+          <FormControl variant='outlined'>
+            <InputLabel id="data-select-label">Selected data</InputLabel>
+            <Select
+              variant='outlined'
+              value={reportData}
+              labelId="data-select-label"
+              label={"Selected data"}
+              onChange={(e) => setReportData(e.target.value)}
+            >
+              {usageData.map(item => {
+                return (
+                  <MenuItem value={item}>{item}</MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
 
           <h3>Group by</h3>
           {/* Input for date sorting/binning along the x-axis */}
@@ -113,11 +130,63 @@ export default function Reports() {
             </Select>
           </FormControl>
 
+          <h3>Client</h3>
+            <FormControl variant='outlined'>
+            <InputLabel id="client-select-label">Client</InputLabel>
+            <Select
+              variant='outlined'
+              value={client}
+              labelId="client-select-label"
+              label={"Client"}
+              onChange={(e) => setClient(e.target.value)}
+            >
+              {clientOptions.map(item => {
+                return (
+                  <MenuItem value={item}>{item}</MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+
+          <h3>Operator</h3>
+            <FormControl variant='outlined'>
+            <InputLabel id="operator-select-label">Operator</InputLabel>
+            <Select
+              variant='outlined'
+              value={operator}
+              labelId="operator-select-label"
+              label={"Operator"}
+              onChange={(e) => setOperator(e.target.value)}
+            >
+              {operatorOptions.map(item => {
+                return (
+                  <MenuItem value={item}>{item}</MenuItem>
+                )
+              })}
+            </Select>
+          </FormControl>
+
+          <h3>Booking Status</h3> 
+          <FormControlLabel control={<Checkbox value={completedFilter} defaultChecked onChange={(e) => setCompletedFilter(e.target.value)}/>} label="Completed"/>
+          <FormControlLabel control={<Checkbox value={cancelledFilter} onChange={(e) => setCancelledFilter(e.target.value)}/>} label="Cancelled"/>
+
+          <h3>Booking Cost</h3>
+          <TextField
+              id="costTxt"
+              label="Max cost"
+              type="number"
+              defaultValue={bookingCostFilter}
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={(e) => setBookingCostFilter(e.target.value)}
+            />
+
         </div>
         <div className="reportsGraph">
           <h2>Report</h2>
-
-          <body>Charts go here</body>
+          
+          <Barchart/>
 
         </div>
       </div>
