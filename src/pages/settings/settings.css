@@ -1,7 +1,7 @@
 .settings-div{
     flex: 5;
     background-color: #CFEEFD;
-    padding: 20px;
+    padding-left: 20px;
 }
 
 .fields-div {
@@ -20,7 +20,7 @@
 
 .settings-submit-button-div {
     float: right;
-    bottom: 0;
+    padding: 20px;
 }
 
 .settings-submit {
@@ -36,4 +36,13 @@
 .settings-submit:hover {
     background-color: #D8EDB9;
     color: black;
+}
+
+.add-admin-fields-div {
+    padding-top: 20px;
+    margin-left: 10px;
+}
+
+.admin-heading {
+    padding-top: 30px;
 }
