@@ -2,3 +2,23 @@
     flex: 5;
     background-color: #CFEEFD;
 }
+
+.bookingsHeading{
+    margin-top: 40px; 
+    margin-left: 50px;
+}
+
+.tableContainer {
+    width: 100%;
+    display: grid;
+    align-items: start;
+    justify-items: center;
+}
+
+input {
+    width: 100%;
+}
+
+table {
+    width: 90%;
+}
