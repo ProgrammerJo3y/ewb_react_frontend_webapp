@@ -9,9 +9,10 @@ export default function Dashboard() {
         <h1>Dashboard</h1>
 
         <div className="cards">
-        <Card title="No. Stations"/>
-        <Card title="No. Completed Bookings"/>
-        <Card title="No. Incomplete Bookings"/>
+        <Card title="No. Stations" detail="0"/>
+        <Card title="No. Completed Bookings" detail="0"/>
+        <Card title="No. Incomplete Bookings" detail="0"/>
+        
         </div>
 
         <div>
