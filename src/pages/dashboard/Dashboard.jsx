@@ -1,7 +1,7 @@
 import './dashboard.css'
 import Table from '../../components/table/Table.jsx'
 import Card from '../../components/card/Card.jsx'
-<script>src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 export default function Dashboard() {
   return (
@@ -9,17 +9,18 @@ export default function Dashboard() {
         <h1>Dashboard</h1>
 
         <div className="cards">
-        <Card title="Machine Issues"/>
-        <Card title="New Feedback"/>
+        <Card title="No. Stations"/>
+        <Card title="No. Completed Bookings"/>
+        <Card title="No. Incomplete Bookings"/>
         </div>
 
         <div>
           <h2>Chart Display</h2>
-          <canvas ></canvas>
+          <canvas id="dashboardChart"></canvas>
         </div>
 
         <div>
-        <h2>Washing Machine Details</h2>
+        <h2>Station Details</h2>
         <Table/>
         </div>
     </div>

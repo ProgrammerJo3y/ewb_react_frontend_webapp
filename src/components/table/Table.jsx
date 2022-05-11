@@ -7,9 +7,9 @@ export default function Table() {
           <tr>
             <th>ID</th>
             <th>Location</th>
-            <th>Bookings</th>
+            <th>Current Bookings No.</th>
+            <th>Cancelled Bookings No.</th>
             <th>Errors</th>
-            <th>View</th>
           </tr>
           <tr>
             <td>  </td>
