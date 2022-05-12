@@ -7,12 +7,6 @@ import { Select, FormControl, MenuItem, InputLabel, FormControlLabel, TextField,
 
 export default function Reports() {
 
-  // Charts focus on showing booking quantity on the y-axis
-  const [filter, setFilter] = useState({});
-
-  // Data returned from back-end query
-  const [reportData, setReportData] = useState(usageData[0]); // Data that is filtered for display. Default is booking data
-
   // General filter options
   const usageData = ["Bookings", "Clients", "Stations"]
   const groupTypeOptions = ["No grouping", "Time of Day", "Week Days", "Months", "Years", "Users", "Operators"];
@@ -20,6 +14,11 @@ export default function Reports() {
   const clientOptions = ["All", "User 1", "User 2", "User 3"]
   const operatorOptions = ["All", "Operator 1", "Operator 2", "Operator 3"]
   
+  // Charts focus on showing booking quantity on the y-axis
+  const [filter, setFilter] = useState({});
+
+  // Data returned from back-end query
+  const [reportData, setReportData] = useState(usageData[0]); // Data that is filtered for display. Default is booking data
 
   function updateFilter(key, value) {
     if (value) setFilter({ ...filter, [key]:value });
@@ -28,6 +27,7 @@ export default function Reports() {
       delete newFilter[key];
       setFilter(newFilter);
     }
+    // Need to verify input data
   }
 
   return (
@@ -64,6 +64,7 @@ export default function Reports() {
             <Select
               variant='outlined'
               value={filter.groupingType}
+              defaultValue={groupTypeOptions[0]}
               labelId="grouping-type-select-label"
               label={"Group by"}
               onChange={(e) => updateFilter("groupingType", e.target.value)}
@@ -107,6 +108,7 @@ export default function Reports() {
             <Select
               variant='outlined'
               value={filter.location}
+              defaultValue={locationOptions[0]}
               labelId="location-select-label"
               label={"Location"}
               onChange={(e) => updateFilter("location", e.target.value)}
@@ -125,6 +127,7 @@ export default function Reports() {
             <Select
               variant='outlined'
               value={filter.client}
+              defaultValue={clientOptions[0]}
               labelId="client-select-label"
               label={"Client"}
               onChange={(e) => updateFilter("client", e.target.value)}
@@ -143,6 +146,7 @@ export default function Reports() {
             <Select
               variant='outlined'
               value={filter.operator}
+              defaultValue={operatorOptions[0]}
               labelId="operator-select-label"
               label={"Operator"}
               onChange={(e) => updateFilter("operator", e.target.value)}
@@ -179,7 +183,8 @@ export default function Reports() {
               id="costTxt"
               label="Max cost"
               type="number"
-              defaultValue={filter.bookingCost}
+              value={filter.bookingCost}
+              defaultValue={-1}
               InputLabelProps={{
                 shrink: true,
               }}
