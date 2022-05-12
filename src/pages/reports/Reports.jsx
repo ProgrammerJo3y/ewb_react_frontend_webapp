@@ -2,12 +2,16 @@ import './reports.css'
 import Barchart from '../../components/barchart/Barchart'
 
 import { useState} from 'react'
-import { Select, FormControl, MenuItem, InputLabel, Radio, RadioGroup, FormLabel, FormControlLabel, TextField, Checkbox } from '@mui/material'
+import { Select, FormControl, MenuItem, InputLabel, FormControlLabel, TextField, Checkbox } from '@mui/material'
 
 
 export default function Reports() {
 
   // Charts focus on showing booking quantity on the y-axis
+  const [filter, setFilter] = useState({});
+
+  // Data returned from back-end query
+  const [reportData, setReportData] = useState(usageData[0]); // Data that is filtered for display. Default is booking data
 
   // General filter options
   const usageData = ["Bookings", "Clients", "Stations"]
@@ -16,30 +20,15 @@ export default function Reports() {
   const clientOptions = ["All", "User 1", "User 2", "User 3"]
   const operatorOptions = ["All", "Operator 1", "Operator 2", "Operator 3"]
   
-  // States for filter queries
-  const [reportData, setReportData] = useState(usageData[0]); // Data that is filtered for display. Default is booking data
-  const [groupingType, setGroupingType] = useState(groupTypeOptions[0]); // Week day, months, years, users, operators, stations
-  const [startDate, setStartDate] = useState('startDate'); // Specify date (not time) for filtering
-  const [endDate, setEndDate] = useState('endDate');
-  const [location, setLocation] = useState(locationOptions[0]); // Location or station, not sure
-  const [client, setClient] = useState(clientOptions[0]); // Single client to filter by
-  const [operator, setOperator] = useState(operatorOptions[0]); // Single operator to filter by
 
-  // Filters for bookings
-  const [completedFilter, setCompletedFilter] = useState(true); // Show all completed bookings
-  const [cancelledFilter, setCancelledFilter] = useState(false); // Show all cancelled bookings
-  const [startTimeFilter, setStartTimeFilter] = useState('startTimeFilter'); // Additional filter by time of day
-  const [endTimeFilter, setEndTimeFilter] = useState('endTimeFilter');
-  const [bookingCostFilter, setBookingCostFilter] = useState(-1); // Upper cost bound for bookings. Negative includes all
-
-
-  const handleDateRangeStartChange = (newDate) => {
-    setStartDate(newDate);
-  };
-
-  const handleDateRangeEndChange = (newDate) => {
-    setEndDate(newDate);
-  };
+  function updateFilter(key, value) {
+    if (value) setFilter({ ...filter, [key]:value });
+    if (!value) {
+      const newFilter = { ...filter };
+      delete newFilter[key];
+      setFilter(newFilter);
+    }
+  }
 
   return (
     <div className="reportsContainer">
@@ -74,10 +63,10 @@ export default function Reports() {
             <InputLabel id="grouping-type-select-label">Group by</InputLabel>
             <Select
               variant='outlined'
-              value={groupingType}
+              value={filter.groupingType}
               labelId="grouping-type-select-label"
               label={"Group by"}
-              onChange={(e) => setGroupingType(e.target.value)}
+              onChange={(e) => updateFilter("groupingType", e.target.value)}
             >
               {groupTypeOptions.map(item => {
                 return (
@@ -94,21 +83,21 @@ export default function Reports() {
               id="start"
               label="Start Date"
               type="date"
-              defaultValue={startDate}
+              defaultValue={filter.startDate}
               InputLabelProps={{
                 shrink: true,
               }}
-              onChange={handleDateRangeStartChange}
+              onChange={(e) => updateFilter("startDate", e.target.value)}
             />
             <TextField
               id="end"
               label="End Date"
               type="date"
-              defaultValue={endDate}
+              defaultValue={filter.endDate}
               InputLabelProps={{
                 shrink: true,
               }}
-              onChange={handleDateRangeEndChange}
+              onChange={(e) => updateFilter("endDate", e.target.value)}
             />
           </div>
 
@@ -117,10 +106,10 @@ export default function Reports() {
             <InputLabel id="location-select-label">Location</InputLabel>
             <Select
               variant='outlined'
-              value={location}
+              value={filter.location}
               labelId="location-select-label"
               label={"Location"}
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={(e) => updateFilter("location", e.target.value)}
             >
               {locationOptions.map(item => {
                 return (
@@ -135,10 +124,10 @@ export default function Reports() {
             <InputLabel id="client-select-label">Client</InputLabel>
             <Select
               variant='outlined'
-              value={client}
+              value={filter.client}
               labelId="client-select-label"
               label={"Client"}
-              onChange={(e) => setClient(e.target.value)}
+              onChange={(e) => updateFilter("client", e.target.value)}
             >
               {clientOptions.map(item => {
                 return (
@@ -153,10 +142,10 @@ export default function Reports() {
             <InputLabel id="operator-select-label">Operator</InputLabel>
             <Select
               variant='outlined'
-              value={operator}
+              value={filter.operator}
               labelId="operator-select-label"
               label={"Operator"}
-              onChange={(e) => setOperator(e.target.value)}
+              onChange={(e) => updateFilter("operator", e.target.value)}
             >
               {operatorOptions.map(item => {
                 return (
@@ -167,19 +156,34 @@ export default function Reports() {
           </FormControl>
 
           <h3>Booking Status</h3> 
-          <FormControlLabel control={<Checkbox value={completedFilter} defaultChecked onChange={(e) => setCompletedFilter(e.target.value)}/>} label="Completed"/>
-          <FormControlLabel control={<Checkbox value={cancelledFilter} onChange={(e) => setCancelledFilter(e.target.value)}/>} label="Cancelled"/>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value={filter.completed}
+                defaultChecked
+                onChange={(e) => updateFilter("completed", e.target.value)}
+              />}
+              label="Completed"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                value={filter.cancelled}
+                onChange={(e) => updateFilter("cancelled", e.target.value)}
+              />}
+              label="Cancelled"
+          />
 
           <h3>Booking Cost</h3>
           <TextField
               id="costTxt"
               label="Max cost"
               type="number"
-              defaultValue={bookingCostFilter}
+              defaultValue={filter.bookingCost}
               InputLabelProps={{
                 shrink: true,
               }}
-              onChange={(e) => setBookingCostFilter(e.target.value)}
+              onChange={(e) => updateFilter("bookingCost", e.target.value)}
             />
 
         </div>
