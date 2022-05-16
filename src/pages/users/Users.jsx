@@ -1,6 +1,7 @@
 import { React } from 'react'
 
 import './users.css'
+import CustomPaginationActionsTable from '../../components/table/Table'
 
 export default function Users() {
   return (
@@ -18,7 +19,7 @@ export default function Users() {
         </div>
       </div>
       <div className='usersTableContainer'>
-
+        <CustomPaginationActionsTable></CustomPaginationActionsTable>
       </div>
     </div>
   )
