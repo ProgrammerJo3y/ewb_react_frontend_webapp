@@ -4,6 +4,7 @@ import ReportsIcon from '../../assets/icons/reports.svg'
 import FeedbackIcon from '../../assets/icons/feedback.svg'
 import BookingsIcon from '../../assets/icons/bookings.svg'
 import SettingsIcon from '../../assets/icons/settings.svg'
+
 import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
@@ -23,9 +24,9 @@ export default function Sidebar() {
             <img className="sidebarIcon" src={ReportsIcon} alt="Reports Icon"/>
             Reports
           </NavLink>
-          <NavLink className={({ isActive }) => (isActive ? "sidebarActive" : "sidebarInactive")} to="/feedback">
+          <NavLink className={({ isActive }) => (isActive ? "sidebarActive" : "sidebarInactive")} to="/users">
             <img className="sidebarIcon" src={FeedbackIcon} alt="Feedback icon"/>
-            Feedback
+            Users
           </NavLink>
           <NavLink className={({ isActive }) => (isActive ? "sidebarActive" : "sidebarInactive")} to="/settings">
           <img className="sidebarIcon" src={SettingsIcon} alt="Settings icon"/>

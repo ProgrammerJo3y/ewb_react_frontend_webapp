@@ -6,7 +6,7 @@ import Sidebar from './components/sidebar/Sidebar.jsx';
 import Dashboard from './pages/dashboard/Dashboard.jsx';
 import Bookings from './pages/bookings/Bookings.jsx';
 import Reports from './pages/reports/Reports.jsx';
-import Feedback from './pages/feedback/Feedback.jsx';
+import Users from './pages/users/Users.jsx';
 import Settings from './pages/settings/Settings.jsx';
 import ErrorPage from './pages/errorpage/ErrorPage.jsx'
 import Login from './pages/login/Login.jsx'
@@ -30,7 +30,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />}/>
           <Route path="/bookings" element={<Bookings />}/>
           <Route path="/reports" element={<Reports />}/>
-          <Route path="/feedback" element={<Feedback />}/>
+          <Route path="/users" element={<Users />}/>
           <Route path="/settings" element={<Settings />}/>
           <Route path="*" element={<ErrorPage />}/>
         </Routes>
