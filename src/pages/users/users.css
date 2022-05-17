@@ -34,3 +34,26 @@ div.usersRolesContainer button {
 .usersTableContainer{
 
 }
+
+.users_button {
+    color: black;
+    background-color: #ffffff;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid #CDCDCD;
+}
+
+.users_button:hover {
+    background-color: #7ec78f;
+    color: black;
+    border: 2px solid #7ec78f;
+}
+
+.users_tabinActive {
+    background-color: goldenrod;
+    border: none;
+}
+
+.users_tabActive {
+    background-color: #7ec78f;
+}
