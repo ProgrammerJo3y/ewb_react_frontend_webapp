@@ -11,12 +11,10 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    height: 5vh;
+    border-radius: 5px;
+    padding: 20px 15px;
     border-bottom: 2px solid var(--border-colour);
-}
-
-div.usersRolesContainer button {
-    width: 20vw;
-    margin: 20px;
 }
 
 .usersFilterContainer{
@@ -25,10 +23,18 @@ div.usersRolesContainer button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 5vh;
+    border-radius: 5px;
+    padding: 20px 15px;
+}
+
+.usersFilterContainer input{
+    margin: 0px 10px;
+    width: 30vw;
 }
 
 .userControls{
-
+    
 }
 
 .usersTableContainer{
@@ -37,10 +43,12 @@ div.usersRolesContainer button {
 
 .users_button {
     color: black;
-    background-color: #ffffff;
+    background-color: var(--background-colour);
     font-weight: bold;
     border-radius: 5px;
-    border: 2px solid #CDCDCD;
+    margin: 0px 10px;
+    padding: 10px 15px;
+    border: 2px solid var(--border-colour);
 }
 
 .users_button:hover {
@@ -49,11 +57,35 @@ div.usersRolesContainer button {
     border: 2px solid #7ec78f;
 }
 
-.users_tabinActive {
-    background-color: goldenrod;
-    border: none;
+/* CSS for the styled radio buttons */
+
+.usersRolesContainer .option{
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid lightgrey;
+    transition: all 0.3s ease;
 }
 
-.users_tabActive {
-    background-color: #7ec78f;
+input[type="radio"]{
+    display: none;
+}
+#client_option:checked:checked ~ .client_option,
+#operator_option:checked:checked ~ .operator_option{
+    border-color: var(--highlight-secondary-colour);
+    background: var(--highlight-secondary-colour);
+}
+.wrapper .option span{
+    font-size: 20px;
+    color: #808080;
+}
+#client_option:checked:checked ~ .client_option span,
+#operator_option:checked:checked ~ .operator_option span{
+    color: #fff;
 }

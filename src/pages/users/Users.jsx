@@ -1,14 +1,23 @@
 import { React } from 'react'
 
 import './users.css'
-import CustomPaginationActionsTable from '../../components/table/Table'
+import MatUITable from '../../components/table/Table'
 
 export default function Users() {
   return (
     <div className="usersContainer">
       <div className='usersRolesContainer'>
-        <button className={({ isActive }) => (isActive ? "users_tabActive" : "users_tabinActive")}>Clients</button>
-        <button className={({ isActive }) => (isActive ? "users_tabActive" : "users_tabinActive")}>Operators</button>
+
+        <input type="radio" name="select" id="client_option" checked/>
+        <input type="radio" name="select" id="operator_option"/>
+
+        <label for="client_option" class="option client_option">
+          <span>Clients</span>
+        </label>
+        <label for="operator_option" class="option operator_option">
+          <span>Operators</span>
+        </label>
+
       </div>
 
       <div className='usersFilterContainer'>
@@ -19,7 +28,7 @@ export default function Users() {
         </div>
       </div>
       <div className='usersTableContainer'>
-        <CustomPaginationActionsTable></CustomPaginationActionsTable>
+        <MatUITable></MatUITable>
       </div>
     </div>
   )
