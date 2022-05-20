@@ -33,9 +33,6 @@ export default function Login({ setToken }) {
 		// Currently returns a "positive" resolution to the async call, rather than undefined (i.e., always returns a token)
 		return Promise.resolve(1);
 	}
-	function signUp() {
-		//to-do: add nav stuff
-	}
 
 	return (
 		<div className="holder">
@@ -57,9 +54,6 @@ export default function Login({ setToken }) {
 					<div className="submit-button-div">
 						<button type="submit" className="submit-button">
 							Submit
-						</button>
-						<button onClick={signUp} className="signup-button">
-							Sign Up
 						</button>
 					</div>
 				</form>
