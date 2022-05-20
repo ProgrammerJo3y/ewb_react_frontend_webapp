@@ -17,6 +17,17 @@ h1{
     
 }
 
-#DBChart{
-    
+.charts {
+    display: flex;
+    flex-direction: row;
+    min-height: 40vh;
+    max-height: 40vh;
+}
+
+.chartWrapper {
+    flex: 2 1 auto;
+    max-height: inherit;
+    padding: 10px;
+    border-width: 2px;
+    border-radius: 10px;
 }

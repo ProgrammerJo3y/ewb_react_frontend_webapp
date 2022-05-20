@@ -1,0 +1,90 @@
+@import url("../../styles/styles.css");
+
+.usersContainer{
+    flex: 5;
+    padding: 20px;
+    width: 100vh;
+    background-color: var(background-color);
+}
+
+.usersRolesContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height: 5vh;
+    padding: 20px 15px;
+    border-bottom: 2px solid var(--border-colour);
+}
+
+.usersFilterContainer{
+    padding-left: 100px;
+    padding-right: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 5vh;
+    border-radius: 5px;
+    padding: 20px 15px;
+}
+
+.usersFilterContainer input{
+    margin: 0px 10px;
+    width: 30vw;
+}
+
+.userControls{
+    
+}
+
+.usersTableContainer{
+
+}
+
+.users_button {
+    color: black;
+    background-color: var(--background-colour);
+    font-weight: bold;
+    border-radius: 5px;
+    margin: 0px 10px;
+    padding: 10px 15px;
+    border: 2px solid var(--border-colour);
+}
+
+.users_button:hover {
+    background-color: #7ec78f;
+    color: black;
+    border: 2px solid #7ec78f;
+}
+
+/* CSS for the styled radio buttons */
+
+.usersRolesContainer .option{
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid lightgrey;
+    transition: all 0.3s ease;
+}
+
+input[type="radio"]{
+    display: none;
+}
+#client_option:checked:checked ~ .client_option,
+#operator_option:checked:checked ~ .operator_option{
+    border-color: var(--highlight-secondary-colour);
+    background: var(--highlight-secondary-colour);
+}
+.wrapper .option span{
+    font-size: 20px;
+    color: #808080;
+}
+#client_option:checked:checked ~ .client_option span,
+#operator_option:checked:checked ~ .operator_option span{
+    color: #fff;
+}
