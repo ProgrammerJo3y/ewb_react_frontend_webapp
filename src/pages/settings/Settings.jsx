@@ -2,55 +2,47 @@ import React, { useState, Component} from 'react';
 import './settings.css'
 
 export default function Settings(){
-  const [username, setUsername] = useState();
-  const [password, setPassword] = useState();
-  const [email, setEmail] = useState();
-  
-  const username_state = {
-    value: "Some name",
-    isInEditMode: false
-  }
+  const [PhoneNumber, setPhoneNumber] = useState("0456976789");
+  const [Password, setPassword] = useState("********");
+  const [Email, setEmail] = useState("j_doe@ewb.org.au");
 
-  const password_state = {
-    value: "Some password",
-    isInEditMode: false
-  }
-
-  const email_state = {
-    value: "Some email",
-    isInEditMode: false
+  const handleChange = (event) => {
+    
+    setPhoneNumber(event.target.PhoneNumber)
+    setPassword(event.target.Password)
+    setEmail(event.target.Email)
   }
 
   return (
     <div className="settings-div">
       <h1 className='admin-heading'> Settings </h1>
-      <div className="fields-div">
+      <form className="fields-div">
         <label className='settings-fields'>
-          <p className='settings-text'>Username</p>
-          <input type="text" value="0456976789"/>
+          <p className='settings-text'>Phone Number</p>
+          <input type="text" value={PhoneNumber} placeholder='0456976789' onChange={handleChange}/>
         </label>
         <label className='settings-fields'>
           <p className='settings-text'>Password</p>
-          <input type="text" value="********" />
+          <input type="text" value={Password} placeholder='********'/>
         </label>
         <label className='settings-fields'>
           <p className='settings-text'>Email</p>
-          <input type="text" value="j_doe@ewb.org.au" />
+          <input type="text" value={Email} placeholder='j_doe@ewb.org.au'/>
         </label>
         <div className='settings-submit-button-div'>
         <button type="submit" className='settings-submit'>Submit</button>
         </div>
-      </div>
+      </form>
       
       
       <h1 className='admin-heading'> Add a New Admin </h1>
-      <div className='add-admin-fields-div'>
+      <form className='add-admin-fields-div'>
         <label className='settings-fields'>
           <p className='settings-text'>Full Name</p>
           <input type="text"/>
         </label>
         <label className='settings-fields'>
-          <p className='settings-text'>Username</p>
+          <p className='settings-text'>Phone Number</p>
           <input type="text"/>
         </label>
         <label className='settings-fields'>
@@ -64,7 +56,7 @@ export default function Settings(){
         <div className='settings-submit-button-div'>
           <button type="submit" className='settings-submit'>Submit</button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
