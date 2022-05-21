@@ -28,7 +28,7 @@ export default function Settings(){
         </label>
         <label className='settings-fields'>
           <p className='settings-text'>Password</p>
-          <input type="text" value={Password} placeholder='********'/>
+          <input type="password" value={Password} placeholder='password'/>
         </label>
         <label className='settings-fields'>
           <p className='settings-text'>Email</p>
@@ -52,7 +52,7 @@ export default function Settings(){
         </label>
         <label className='settings-fields'>
           <p className='settings-text'>Password</p>
-          <input type="text"/>
+          <input type="password"/>
         </label>
         <label className='settings-fields'>
           <p className='settings-text'>Email</p>
