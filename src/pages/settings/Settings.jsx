@@ -13,10 +13,15 @@ export default function Settings(){
     setEmail(event.target.Email)
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+  }
+
   return (
     <div className="settings-div">
       <h1 className='admin-heading'> Settings </h1>
-      <form className="fields-div">
+      <form className="fields-div" onSubmit={handleSubmit}>
         <label className='settings-fields'>
           <p className='settings-text'>Phone Number</p>
           <input type="text" value={PhoneNumber} placeholder='0456976789' onChange={handleChange}/>
@@ -36,7 +41,7 @@ export default function Settings(){
       
       
       <h1 className='admin-heading'> Add a New Admin </h1>
-      <form className='add-admin-fields-div'>
+      <form className='add-admin-fields-div' onSubmit={handleSubmit}>
         <label className='settings-fields'>
           <p className='settings-text'>Full Name</p>
           <input type="text"/>
