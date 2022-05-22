@@ -49,8 +49,6 @@
 
 .submit-button-div {
     padding-top: 20px;
-    display: flex;
-    flex-direction: column;
 }
 
 .submit-button {
@@ -63,24 +61,7 @@
     border: 2px solid #ffffff;
 }
 
-.signup-button {
-    margin-top: 5px;
-    color: white;
-    width: 160px;
-    height: 30px;
-    background-color: var(--highlight-colour);
-    border-radius: 12px;
-    font-weight: bold;
-    border: 2px solid #ffffff;
-}
-
 .submit-button:hover {
-    background-color: var(--highlight-secondary-colour);
-    border: 2px solid var(--highlight-colour);
-    color: white;
-}
-
-.signup-button:hover {
     background-color: var(--highlight-secondary-colour);
     border: 2px solid var(--highlight-colour);
     color: white;
