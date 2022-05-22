@@ -1,24 +1,62 @@
-.bookings{
-    flex: 5;
-    background-color: #CFEEFD;
+@import url("../../styles/styles.css");
+
+.bookings {
+  flex: 5;
+  padding: 20px;
+  margin-left: 2%;
 }
 
-.bookingsHeading{
-    margin-top: 40px; 
-    margin-left: 50px;
+.bookingsHeading {
+  margin-top: 40px;
+  margin-bottom: 1%;
 }
 
-.tableContainer {
-    width: 100%;
-    display: grid;
-    align-items: start;
-    justify-items: center;
+.bookingsFilterContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2%;
+  /* width: 100%; */
+  /* display: grid; */
+  /* align-items: start; */
+  /* justify-items: center; */
+}
+.filter {
+  border: none;
+  appearance: none;
+  background-color: #f2f2f2;
+  padding: 12px;
+  border-radius: 3px;
+  width: 200px;
+  /* outline: none; */
 }
 
+.filter:focus::placeholder {
+  color: transparent;
+}
+
+.filter::placeholder {
+  color: #222;
+  transition: color 0.3s ease;
+}
+
+.exportDataButton {
+  outline: none;
+  border-radius: 6px;
+  color: #fff;
+  background-color: var(--highlight-secondary-colour);
+  font-weight: bold;
+  border: 0;
+  cursor: pointer;
+}
+
+/* 
 input {
     width: 100%;
 }
 
 table {
     width: 90%;
+} */
+
+.bookingsTableContainer {
 }
