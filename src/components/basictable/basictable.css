@@ -1,0 +1,35 @@
+.table{
+    margin: 3%;
+    width: 90%;
+}
+
+table, th, td{
+    
+    border-collapse: collapse;
+    text-align: center;
+    padding: 15px;
+    
+
+}
+
+th,td{
+    border-bottom: 1px solid #ddd;
+}
+
+th{
+    background-color: #04AA6D;
+    color: white;
+}
+
+tr{
+    background-color: white;
+}
+
+tr:nth-child(odd){
+    background-color: #d8d8d8;
+
+}
+
+tr:hover{
+    background-color: rgb(189, 230, 202);
+}

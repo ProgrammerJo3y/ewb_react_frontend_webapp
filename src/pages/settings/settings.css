@@ -1,4 +1,79 @@
-.settings{
+@import url('../../styles/styles.css');
+
+.settings-div{
     flex: 5;
-    background-color: #CFEEFD;
+    background-color: var(--background-colour);
+    padding-left: 20px;
+}
+
+.fields-div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    margin-left: 10px;
+    margin: 10px;
+    padding: 10px;
+    border-style:solid;
+    border-color: var(--border-colour);
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.fields-div input {
+    max-width: 15vw;
+}
+
+.settings-text {
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.settings-fields {
+    flex-direction: column;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.settings-submit-button-div {
+    margin-left: auto;
+    padding: 20px;
+}
+
+.settings-submit {
+    color: white;
+    width: 150px;
+    height: 30px;
+    background-color: #89AFB4;
+    border-radius: 12px;
+    font-weight: bold;
+    border: 2px solid #ffffff;
+}
+
+.settings-submit:hover {
+    background-color: var(--highlight-secondary-colour);
+}
+
+.settings-submit:active {
+    background-color: var(--highlight-colour);
+}
+
+.add-admin-fields-div {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    margin-left: 10px;
+    margin: 10px;
+    padding: 10px;
+    border-style:solid;
+    border-color: var(--border-colour);
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.add-admin-fields-div input {
+    max-width: 15vw;
+}
+
+.admin-heading {
+    padding-top: 30px;
 }
