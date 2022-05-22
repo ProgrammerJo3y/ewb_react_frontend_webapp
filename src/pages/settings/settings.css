@@ -1,12 +1,26 @@
+@import url('../../styles/styles.css');
+
 .settings-div{
     flex: 5;
-    background-color: #CFEEFD;
+    background-color: var(--background-colour);
     padding-left: 20px;
 }
 
 .fields-div {
+    display: flex;
+    flex-direction: column;
     padding-top: 20px;
     margin-left: 10px;
+    margin: 10px;
+    padding: 10px;
+    border-style:solid;
+    border-color: var(--border-colour);
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.fields-div input {
+    max-width: 15vw;
 }
 
 .settings-text {
@@ -16,10 +30,12 @@
 
 .settings-fields {
     flex-direction: column;
+    font-weight: bold;
+    padding-top: 20px;
 }
 
 .settings-submit-button-div {
-    float: right;
+    margin-left: auto;
     padding: 20px;
 }
 
@@ -34,13 +50,28 @@
 }
 
 .settings-submit:hover {
-    background-color: #D8EDB9;
-    color: black;
+    background-color: var(--highlight-secondary-colour);
+}
+
+.settings-submit:active {
+    background-color: var(--highlight-colour);
 }
 
 .add-admin-fields-div {
+    display: flex;
+    flex-direction: column;
     padding-top: 20px;
     margin-left: 10px;
+    margin: 10px;
+    padding: 10px;
+    border-style:solid;
+    border-color: var(--border-colour);
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+.add-admin-fields-div input {
+    max-width: 15vw;
 }
 
 .admin-heading {
