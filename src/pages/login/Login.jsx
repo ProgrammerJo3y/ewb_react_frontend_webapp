@@ -21,15 +21,15 @@ export default function Login({ setToken }) {
 		setToken(token);
 	};
 	async function loginUser(credentials) {
-		const user = await AdminSignIn({
-			// username: credentials?.username2.toString(),
-			// password: credentials?.password2.toString()
-			variables: { username: credentials?.username2, password: credentials?.password2 },
-			result: {
-				token,
-				error
-			}
-		});
+		// const user = await AdminSignIn({
+		// 	// username: credentials?.username2.toString(),
+		// 	// password: credentials?.password2.toString()
+		// 	variables: { username: credentials?.username2, password: credentials?.password2 },
+		// 	result: {
+		// 		token,
+		// 		error
+		// 	}
+		// });
 		// Currently returns a "positive" resolution to the async call, rather than undefined (i.e., always returns a token)
 		return Promise.resolve(1);
 	}
