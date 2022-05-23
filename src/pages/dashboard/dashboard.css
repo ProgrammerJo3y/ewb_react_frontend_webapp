@@ -1,20 +1,16 @@
 .dashboard{
     flex: 5;
-    background-color: white;
     padding: 3%;
 }
 
-h1{
-    
+.dashboardHeading {
+    margin-bottom: 1%
 }
 
 .cards{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: auto;
-    width: auto;
-    
 }
 
 .charts {

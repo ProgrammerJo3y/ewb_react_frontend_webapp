@@ -22,7 +22,7 @@ const rows = [
 export default function Dashboard() {
   return (
     <div className="dashboard">
-        <h1>Dashboard</h1>
+        <h1 className="dashboardHeading">Dashboard</h1>
 
         <div className="cards">
           <Card title="No. Stations" detail="0"/>
