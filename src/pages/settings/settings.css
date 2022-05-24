@@ -3,77 +3,33 @@
 .settings-div{
     flex: 5;
     background-color: var(--background-colour);
-    padding-left: 20px;
+    padding: 3%;
+}
+.settingsHeader {
+    margin-bottom: 1%;
 }
 
 .fields-div {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 15vw 21.2vw;
+    gap: 10px;
     padding-top: 20px;
-    margin-left: 10px;
+    padding-left: 10px;
     margin: 10px;
-    padding: 10px;
-    border-style:solid;
-    border-color: var(--border-colour);
-    border-width: 2px;
+    border: 2px solid var(--border-colour);
     border-radius: 10px;
 }
 
-.fields-div input {
-    max-width: 15vw;
-}
-
-.settings-text {
-    font-weight: bold;
-    padding-top: 20px;
-}
-
-.settings-fields {
-    flex-direction: column;
-    font-weight: bold;
-    padding-top: 20px;
-}
-
-.settings-submit-button-div {
+.submit-button-cell{
+    grid-column-start: 1;
+    grid-column-end: 3;
     margin-left: auto;
-    padding: 20px;
+    margin-bottom: 20px;
+}
+.submit-button-cell button{
+    width: 100px;
 }
 
-.settings-submit {
-    color: white;
-    width: 150px;
-    height: 30px;
-    background-color: #89AFB4;
-    border-radius: 12px;
-    font-weight: bold;
-    border: 2px solid #ffffff;
-}
-
-.settings-submit:hover {
-    background-color: var(--highlight-secondary-colour);
-}
-
-.settings-submit:active {
-    background-color: var(--highlight-colour);
-}
-
-.add-admin-fields-div {
-    display: flex;
-    flex-direction: column;
-    padding-top: 20px;
-    margin-left: 10px;
-    margin: 10px;
-    padding: 10px;
-    border-style:solid;
-    border-color: var(--border-colour);
-    border-width: 2px;
-    border-radius: 10px;
-}
-
-.add-admin-fields-div input {
-    max-width: 15vw;
-}
-
-.admin-heading {
-    padding-top: 30px;
+input{
+    width: 20vw;
 }
