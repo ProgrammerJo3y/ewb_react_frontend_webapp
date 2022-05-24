@@ -27,3 +27,37 @@
 .p {
     color: var(--body-text-colour);
 }
+
+input {
+    border: none;
+    appearance: none;
+    background-color: #f2f2f2;
+    padding: 12px;
+    border-radius: 3px;
+    width: 10vw;
+    font-size: 16px;
+}
+input:focus::placeholder {
+    color: transparent;
+}
+input::placeholder {
+    color: #222;
+    transition: color 0.3s ease;
+}
+
+button {
+    outline: none;
+    border-radius: 6px;
+    color: #fff;
+    background-color: var(--highlight-secondary-colour);
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+}
+button:hover {
+    background-color: var(--border-colour);
+}
+
+button:active {
+    background-color: var(--highlight-colour);
+}
