@@ -2,9 +2,11 @@
 
 .usersContainer{
     flex: 5;
-    padding: 20px;
-    width: 100vh;
-    background-color: var(background-color);
+    padding: 3%;
+}
+
+.usersHeading {
+    margin-bottom: 1%
 }
 
 .usersRolesContainer{

@@ -1,7 +1,10 @@
 .card{
     display: flex;
     flex-direction: row;
-    margin: 3%;   
+    margin-top: 1%;
+    margin-left: 3%;   
+    margin-right: 3%;   
+    margin-bottom: 1%;   
     background-color: #04AA6D;
     width: 40%;
     align-items: center;
