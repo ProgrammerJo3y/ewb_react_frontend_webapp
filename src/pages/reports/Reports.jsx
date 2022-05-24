@@ -1,7 +1,7 @@
 import './reports.css'
 import Barchart from '../../components/barchart/Barchart'
 
-import { useState} from 'react'
+import { useEffect, useState} from 'react'
 import { Select, FormControl, MenuItem, InputLabel, FormControlLabel, TextField, Checkbox } from '@mui/material'
 
 
@@ -39,10 +39,11 @@ export default function Reports() {
         <div className="reportsFilter">
           <h2>Filter</h2>
           
-          <h3>Data</h3>
+          {/* <h3>Data</h3> */}
           <FormControl variant='outlined'>
-            <InputLabel id="data-select-label">Selected data</InputLabel>
+            <InputLabel id="data-select-label" className='filterInput'>Selected data</InputLabel>
             <Select
+              className='filterInput'
               variant='outlined'
               value={reportData}
               labelId="data-select-label"
@@ -57,11 +58,12 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          <h3>Group by</h3>
+          {/* <h3>Group by</h3> */}
           {/* Input for date sorting/binning along the x-axis */}
-          <FormControl variant='outlined'>
-            <InputLabel id="grouping-type-select-label">Group by</InputLabel>
+          <FormControl variant='outlined' className='filterInput'>
+            <InputLabel id="grouping-type-select-label" className='filterInput'>Group by</InputLabel>
             <Select
+              className='filterInput'
               variant='outlined'
               value={filter.groupingType}
               defaultValue={groupTypeOptions[0]}
@@ -77,10 +79,11 @@ export default function Reports() {
             </Select>
           </FormControl>
           
-          <h3>Date Range</h3>
+          {/* <h3>Date Range</h3> */}
           {/* Date range input */}
           <div class="dateRangeContainer">
             <TextField
+              className='filterInput'
               id="start"
               label="Start Date"
               type="date"
@@ -91,6 +94,7 @@ export default function Reports() {
               onChange={(e) => updateFilter("startDate", e.target.value)}
             />
             <TextField
+              className='filterInput'
               id="end"
               label="End Date"
               type="date"
@@ -102,10 +106,11 @@ export default function Reports() {
             />
           </div>
 
-          <h3>Location</h3>
+          {/* <h3>Location</h3> */}
             <FormControl variant='outlined'>
-            <InputLabel id="location-select-label">Location</InputLabel>
+            <InputLabel id="location-select-label" className='filterInput'>Location</InputLabel>
             <Select
+              className='filterInput'
               variant='outlined'
               value={filter.location}
               defaultValue={locationOptions[0]}
@@ -121,10 +126,11 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          <h3>Client</h3>
+          {/* <h3>Client</h3> */}
             <FormControl variant='outlined'>
-            <InputLabel id="client-select-label">Client</InputLabel>
+            <InputLabel id="client-select-label" className='filterInput'>Client</InputLabel>
             <Select
+              className='filterInput'
               variant='outlined'
               value={filter.client}
               defaultValue={clientOptions[0]}
@@ -140,10 +146,11 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          <h3>Operator</h3>
+          {/* <h3>Operator</h3> */}
             <FormControl variant='outlined'>
-            <InputLabel id="operator-select-label">Operator</InputLabel>
+            <InputLabel id="operator-select-label" className='filterInput'>Operator</InputLabel>
             <Select
+              className='filterInput'
               variant='outlined'
               value={filter.operator}
               defaultValue={operatorOptions[0]}
@@ -159,8 +166,9 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          <h3>Booking Status</h3> 
+          {/* <h3>Booking Status</h3>  */}
           <FormControlLabel
+            className='filterInput'
             control={
               <Checkbox
                 value={filter.completed}
@@ -170,6 +178,7 @@ export default function Reports() {
               label="Completed"
           />
           <FormControlLabel
+            className='filterInput'
             control={
               <Checkbox
                 value={filter.cancelled}
@@ -178,8 +187,9 @@ export default function Reports() {
               label="Cancelled"
           />
 
-          <h3>Booking Cost</h3>
+          {/* <h3>Booking Cost</h3> */}
           <TextField
+              className='filterInput'
               id="costTxt"
               label="Max cost"
               type="number"

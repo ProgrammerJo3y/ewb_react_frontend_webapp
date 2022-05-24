@@ -1,10 +1,15 @@
+@import url("../../styles/styles.css");
+
 .reportsContainer{
     flex: 5;
     padding: 3%;
 }
 
 .reportsHeader{
-    margin-bottom: 1%
+    /* margin: 1%; */
+    /* margin: 0px 10px 10px 10px; */
+    padding-bottom: 20px;
+    /* border-bottom: 2px solid var(--border-colour); */
 }
 
 .reports {
@@ -20,24 +25,27 @@
     flex-direction: column;
     overflow: auto;
     padding: 10px;
-    border-style:solid;
-    border-color: #CDCDCD;
-    border-width: 2px;
+    border: 2px solid var(--border-colour);
     border-radius: 10px;
+}
+
+.filterInput{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .reportsGraph {
     flex: 2 1 auto;
-    margin: 10px;
+    margin-left: 10px;
     padding: 10px;
-    max-height: inherit;
-    border-style:solid;
-    border-color: #CDCDCD;
-    border-width: 2px;
+    border: 2px solid var(--border-colour);
     border-radius: 10px;
 }
 
 .dateRangeContainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
