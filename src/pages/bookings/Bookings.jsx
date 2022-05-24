@@ -1,6 +1,8 @@
 import "./bookings.css";
 import { useState, useEffect } from "react";
-import data from "./booking";
+//import data from "./booking";
+import { useQuery } from '@apollo/client';
+import { get_all_bookings } from '../../graphql/queries'
 import MatUITable from "../../components/table/Table";
 
 const columns = [
@@ -13,8 +15,10 @@ const columns = [
 ];
 
 export default function Bookings() {
+  const {loading, error, data} = useQuery(get_all_bookings);
   const [filteredItems, setFilteredItems] = useState(data);
   const [filter, setFilter] = useState({});
+ 
 
   function updateFilter(key, value) {
     if (value) setFilter({ ...filter, [key]: value });
@@ -83,7 +87,7 @@ export default function Bookings() {
           value={filter.notes}
           onChange={(e) => updateFilter("notes", e.target.value)}
         />
-        <button class="exportDataButton">Export Data</button>
+        <button className="exportDataButton">Export Data</button>
       </div>
       <div className="bookingsTableContainer">
         <MatUITable columns={columns} rows={filteredItems} />

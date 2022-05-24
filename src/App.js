@@ -22,6 +22,7 @@ function App() {
   }
 
   return (
+    console.log('APP' + localStorage.getItem('token')),
     <div className="App">
       <Topbar/>
       <div className="container">
