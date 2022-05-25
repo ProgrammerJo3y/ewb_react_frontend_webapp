@@ -1,37 +1,29 @@
 import "./bookings.css";
 import { useState, useEffect } from "react";
-//import data from "./booking";
 import { useQuery } from '@apollo/client';
 import { get_all_bookings } from '../../graphql/queries'
 import MatUITable from "../../components/table/Table";
 
+import dummyData from "./booking";
+
 const columns = [
-  { id: "id", label: "ID" },
-  { id: "location", label: "Location" },
-  { id: "userId", label: "UserID" },
-  { id: "date", label: "Date" },
-  { id: "time", label: "Time" },
-  { id: "notes", label: "Notes" },
+  { field: "id", headerName: "ID", flex: 1 },
+  { field: "transaction_location", headerName: "Location", flex: 1 },
+  { field: "trasnaction_notes", headerName: "Notes", flex: 1 },
+  { field: "user_client_id", headerName: "Date", flex: 1 },
+  { field: "transaction_time", headerName: "Time", flex: 1 },
+
 ];
 
 export default function Bookings() {
-  const {loading, error, data} = useQuery(get_all_bookings);
-  const [filteredItems, setFilteredItems] = useState(data);
+  const result = useQuery(get_all_bookings);
+  const [filteredItems, setFilteredItems] = useState([]);
+  //const [filteredItems, setFilteredItems] = useState(dummyData);
   const [filter, setFilter] = useState({});
- 
-
-  function updateFilter(key, value) {
-    if (value) setFilter({ ...filter, [key]: value });
-    if (!value) {
-      const newFilters = { ...filter };
-      delete newFilters[key];
-      setFilter(newFilters);
-    }
-  }
 
   useEffect(() => {
     const keys = Object.keys(filter);
-    let items = data.filter((row) => {
+    let items = filteredItems.filter((row) => {
       let isMatch = true;
       keys.forEach((key) => {
         if (!row[key].toString().toLowerCase().startsWith(filter[key].toLowerCase())) isMatch = false;
@@ -40,6 +32,25 @@ export default function Bookings() {
     });
     setFilteredItems(items);
   }, [filter]);
+
+  if(result.loading){
+    console.log('LOADING')
+    return(
+      <div>...loading</div>
+    )
+  }
+
+  // setFilteredItems(result.data.getAllBookings); <----------------------- THE PROBLEM IS TRYING TO SET STATE HERE
+  //setFilteredItems(dummyData)
+  
+  async function updateFilter(key, value) {
+    if (value) await setFilter({ ...filter, [key]: value });
+    if (!value) {
+      const newFilters = { ...filter };
+      delete newFilters[key];
+      await setFilter(newFilters);
+    }
+  }
 
   return (
     <div className="bookings">
@@ -89,9 +100,10 @@ export default function Bookings() {
         />
         <button className="exportDataButton">Export Data</button>
       </div>
-      <div className="bookingsTableContainer">
+      <div className="bookingsTableContainer" >
         <MatUITable columns={columns} rows={filteredItems} />
       </div>
     </div>
   );
 }
+

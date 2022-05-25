@@ -7,7 +7,8 @@ import nappy from './../../assets/images/NappiesOnWashingLine.jpg';
 import { useMutation } from '@apollo/client';
 import { admin_sign_in } from '../../graphql/mutations.jsx'
 
-export default function Login({ setToken }) {
+export default function Login() {
+	localStorage.setItem('token', '');
 	const [username, setUsername] = useState(' ');
 	const [password, setPassword] = useState(' ');
 	const [AdminSignIn, { token, error }] = useMutation(admin_sign_in);
@@ -18,22 +19,21 @@ export default function Login({ setToken }) {
 			username2: username,
 			password2: password
 		});
-		setToken(token);
-		console.log('LOGIN' + token)
-		localStorage.setItem('token', token)
+
+		localStorage.setItem('token', `Bearer ${token}`)
 	};
 	async function loginUser(credentials) {
-		// const user = await AdminSignIn({
-		// 	// username: credentials?.username2.toString(),
-		// 	// password: credentials?.password2.toString()
-		// 	variables: { username: credentials?.username2, password: credentials?.password2 },
-		// 	result: {
-		// 		token,
-		// 		error
-		// 	}
-		// });
+		const user = await AdminSignIn({
+			// username: credentials?.username2.toString(),
+			// password: credentials?.password2.toString()
+			variables: { username: credentials?.username2, password: credentials?.password2 },
+			result: {
+				token,
+				error
+			}
+		
+		});
 		// Currently returns a "positive" resolution to the async call, rather than undefined (i.e., always returns a token)
-		console.log(user.data.adminSignIn.token);
 		return Promise.resolve(user.data.adminSignIn.token);
 		//return user.token
 	}

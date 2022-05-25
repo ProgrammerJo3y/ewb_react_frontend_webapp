@@ -1,4 +1,4 @@
-const data = [
+const dummyData = [
     {
       id: 1,
       location: 'Sydney',
@@ -20,7 +20,7 @@ const data = [
       location: 'Rome ',
       userId: '10',
       date: '8.05.22',
-      time: '10am',
+      time: '10am', 
       notes: 'some notes'
     },
     {
@@ -97,4 +97,4 @@ const data = [
     },
   ]
   
-  export default data
+  export default dummyData

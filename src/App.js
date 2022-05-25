@@ -15,14 +15,13 @@ import {gql, useQuery} from '@apollo/client'
 
 function App() {
 
-  const [token, setToken] = useState();
+  var token = localStorage.getItem('token')
 
   if (!token) {
-    return <Login setToken={setToken} />
+    return <Login />
   }
 
   return (
-    console.log('APP' + localStorage.getItem('token')),
     <div className="App">
       <Topbar/>
       <div className="container">

@@ -44,7 +44,7 @@ const rows = [
   { id: 90, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-export default function StickyHeadTable(props) {
+export default function StickyHeadTable({columns, rows}) {
 
   const [tableSelection, setTableSelection] = React.useState();
 
