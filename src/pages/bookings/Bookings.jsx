@@ -101,7 +101,7 @@ export default function Bookings() {
         <button className="exportDataButton">Export Data</button>
       </div>
       <div className="bookingsTableContainer" >
-        <MatUITable columns={columns} rows={filteredItems} />
+        {/* <MatUITable columns={columns} rows={filteredItems} /> */}
       </div>
     </div>
   );

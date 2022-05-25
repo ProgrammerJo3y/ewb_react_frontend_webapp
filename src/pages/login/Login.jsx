@@ -7,8 +7,7 @@ import nappy from './../../assets/images/NappiesOnWashingLine.jpg';
 import { useMutation } from '@apollo/client';
 import { admin_sign_in } from '../../graphql/mutations.jsx'
 
-export default function Login() {
-	localStorage.setItem('token', '');
+export default function Login({ callback }) {
 	const [username, setUsername] = useState(' ');
 	const [password, setPassword] = useState(' ');
 	const [AdminSignIn, { token, error }] = useMutation(admin_sign_in);
@@ -20,7 +19,7 @@ export default function Login() {
 			password2: password
 		});
 
-		localStorage.setItem('token', `Bearer ${token}`)
+		callback({token: token});
 	};
 	async function loginUser(credentials) {
 		const user = await AdminSignIn({
@@ -67,6 +66,6 @@ export default function Login() {
 	);
 }
 
-Login.propTypes = {
-	setToken: PropTypes.func.isRequired
-};
+// Login.propTypes = {
+// 	setToken: PropTypes.func.isRequired
+// };

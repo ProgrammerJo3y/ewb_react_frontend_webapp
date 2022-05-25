@@ -39,7 +39,7 @@ export default function Dashboard() {
 
         <div>
           <h2>Station Details</h2>
-          <Table columns={tableHeader} rows={rows}/>
+          {/* <Table columns={tableHeader} rows={rows}/> */}
         </div>
     </div>
   )
