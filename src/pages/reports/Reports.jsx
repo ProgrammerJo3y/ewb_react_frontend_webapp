@@ -4,8 +4,14 @@ import Barchart from '../../components/barchart/Barchart'
 import { useEffect, useState} from 'react'
 import { Select, FormControl, MenuItem, InputLabel, FormControlLabel, TextField, Checkbox } from '@mui/material'
 
+import { useQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
+import { booking_data } from '../../graphql/queries.jsx';
+import { user_data } from '../../graphql/queries.jsx';
 
 export default function Reports() {
+  const [getBookingData, { bookloading, bookerror, bookdata }] = useLazyQuery(booking_data);
+  const [getUserData, { userloading, usererror, userdata }] = useLazyQuery(user_data);
 
   // General filter options
   const usageData = ["Bookings", "Clients", "Stations"]
@@ -27,7 +33,15 @@ export default function Reports() {
       delete newFilter[key];
       setFilter(newFilter);
     }
-    // Need to verify input data
+    getBookingData({
+      variables: {startDate: "2021/06/13", endDate: "2022/06/18", grouping: "monthly"}
+    });
+    const {booktotal, bookyear, bookmonth} = bookdata;
+
+    getUserData({
+      variables: {startDate: "2021/06/13", endDate: "2022/06/18", grouping: "monthly", userType: "client"}
+    });
+    const {usertotal, useryear, usermonth} = userdata;
   }
 
   return (
@@ -166,7 +180,7 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          {/* <h3>Booking Status</h3>  */}
+          {/* <h3>Booking Status</h3> 
           <FormControlLabel
             className='filterInput'
             control={
@@ -187,7 +201,7 @@ export default function Reports() {
               label="Cancelled"
           />
 
-          {/* <h3>Booking Cost</h3> */}
+          <h3>Booking Cost</h3>
           <TextField
               className='filterInput'
               id="costTxt"
@@ -199,7 +213,7 @@ export default function Reports() {
                 shrink: true,
               }}
               onChange={(e) => updateFilter("bookingCost", e.target.value)}
-            />
+            /> */}
 
         </div>
         <div className="reportsGraph">

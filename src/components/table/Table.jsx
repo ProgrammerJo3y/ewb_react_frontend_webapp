@@ -11,38 +11,38 @@ import TableRow from '@mui/material/TableRow';
 
 import './table.css';
 
-const columns = [
-  { field: 'id', headerName: 'ID', flex: 1 },
-  { field: 'firstName', headerName: 'First name', flex: 1 },
-  { field: 'lastName', headerName: 'Last name', flex: 1 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    flex: 1 
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    flex: 1,
-    valueGetter: (params) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-];
+// const columns = [
+//   { field: 'id', headerName: 'ID', flex: 1 },
+//   { field: 'firstName', headerName: 'First name', flex: 1 },
+//   { field: 'lastName', headerName: 'Last name', flex: 1 },
+//   {
+//     field: 'age',
+//     headerName: 'Age',
+//     type: 'number',
+//     flex: 1 
+//   },
+//   {
+//     field: 'fullName',
+//     headerName: 'Full name',
+//     description: 'This column has a value getter and is not sortable.',
+//     sortable: false,
+//     flex: 1,
+//     valueGetter: (params) =>
+//       `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+//   },
+// ];
 
-const rows = [
-  { id: 10, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 20, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 30, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 40, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 50, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 60, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 70, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 80, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 90, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+// const rows = [
+//   { id: 10, lastName: 'Snow', firstName: 'Jon', age: 35 },
+//   { id: 20, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
+//   { id: 30, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
+//   { id: 40, lastName: 'Stark', firstName: 'Arya', age: 16 },
+//   { id: 50, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
+//   { id: 60, lastName: 'Melisandre', firstName: null, age: 150 },
+//   { id: 70, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
+//   { id: 80, lastName: 'Frances', firstName: 'Rossini', age: 36 },
+//   { id: 90, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+// ];
 
 export default function StickyHeadTable({columns, rows}) {
 
@@ -61,6 +61,7 @@ export default function StickyHeadTable({columns, rows}) {
         rows={rows}
         columns={columns}
         pageSize={10}
+        getRowId={(row) => row.id}
         checkboxSelection
         selectionModel={tableSelection}
         onSelectionModelChange={(selection)=>{
