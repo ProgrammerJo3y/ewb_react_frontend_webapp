@@ -9,7 +9,7 @@ import dummyData from "./booking";
 const columns = [
   { field: "id", headerName: "ID", flex: 1 },
   { field: "transaction_location", headerName: "Location", flex: 1 },
-  { field: "trasnaction_notes", headerName: "Notes", flex: 1 },
+  { field: "transaction_notes", headerName: "Notes", flex: 1 },
   { field: "user_client_id", headerName: "Client ID", flex: 1 },
   { field: "transaction_date", headerName: "Date", flex: 1 },
   { field: "transaction_time", headerName: "Time", flex: 1 },
