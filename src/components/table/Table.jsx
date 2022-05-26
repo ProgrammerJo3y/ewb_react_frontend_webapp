@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
-import { DataGrid, GridRowId } from '@mui/x-data-grid';
+import { DataGrid, GridRowId, GridToolbar, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
@@ -63,6 +63,8 @@ export default function StickyHeadTable({columns, rows}) {
         pageSize={10}
         getRowId={(row) => row.id}
         checkboxSelection
+        components={{Toolbar: () => {
+          return <GridToolbarContainer><GridToolbarExport/></GridToolbarContainer> }}}
         selectionModel={tableSelection}
         onSelectionModelChange={(selection)=>{
           if (selection.length > 1) {
