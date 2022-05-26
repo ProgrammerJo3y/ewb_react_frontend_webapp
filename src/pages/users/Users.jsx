@@ -35,15 +35,16 @@ export default function Users() {
 
   return (
     <div className="usersContainer">
+      <h1 className="usersHeading">Users</h1>
       <div className='usersRolesContainer'>
 
         <input type="radio" name="select" id="client_option" defaultChecked/>
         <input type="radio" name="select" id="operator_option"/>
 
-        <label for="client_option" class="option client_option">
+        <label htmlFor="client_option" className="option client_option">
           <span>Clients</span>
         </label>
-        <label for="operator_option" class="option operator_option">
+        <label htmlFor="operator_option" className="option operator_option">
           <span>Operators</span>
         </label>
 

@@ -2,12 +2,10 @@
 
 .bookings {
   flex: 5;
-  padding: 20px;
-  margin-left: 2%;
+  padding: 3%;
 }
 
 .bookingsHeading {
-  margin-top: 40px;
   margin-bottom: 1%;
 }
 
@@ -15,11 +13,8 @@
   display: flex;
   justify-content: space-between;
   margin-bottom: 2%;
-  /* width: 100%; */
-  /* display: grid; */
-  /* align-items: start; */
-  /* justify-items: center; */
 }
+
 .filter {
   border: none;
   appearance: none;
@@ -27,7 +22,6 @@
   padding: 12px;
   border-radius: 3px;
   width: 10vw;
-  /* outline: none; */
 }
 
 .filter:focus::placeholder {
@@ -50,4 +44,6 @@
 }
 
 .bookingsTableContainer {
+  display: flex;
+  height: calc(100vh - 5vh - 5vh - 20vh - 60px);
 }

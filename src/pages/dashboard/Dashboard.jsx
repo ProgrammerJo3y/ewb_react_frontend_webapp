@@ -22,7 +22,7 @@ const rows = [
 export default function Dashboard() {
   return (
     <div className="dashboard">
-        <h1>Dashboard</h1>
+        <h1 className="dashboardHeading">Dashboard</h1>
 
         <div className="cards">
           <Card title="No. Stations" detail="0"/>
@@ -39,7 +39,7 @@ export default function Dashboard() {
 
         <div>
           <h2>Station Details</h2>
-          <Table columns={tableHeader} rows={rows}/>
+          {/* <Table columns={tableHeader} rows={rows}/> */}
         </div>
     </div>
   )

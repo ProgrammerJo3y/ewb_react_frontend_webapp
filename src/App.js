@@ -11,14 +11,19 @@ import Settings from './pages/settings/Settings.jsx';
 import ErrorPage from './pages/errorpage/ErrorPage.jsx'
 import Login from './pages/login/Login.jsx'
 import { Routes, Route } from 'react-router-dom';
-import {gql, useQuery} from '@apollo/client'
 
 function App() {
-
   const [token, setToken] = useState();
 
+  async function handleLoginCallback (callbackData) {
+    await setToken(callbackData.token)
+    localStorage.setItem('token', `Bearer ${callbackData.token}`)
+  }
+
   if (!token) {
-    return <Login setToken={setToken} />
+    // reset token to null to clear the authorisation header --> refer to index.js
+    localStorage.setItem('token', null);
+    return <Login callback={handleLoginCallback} />
   }
 
   return (

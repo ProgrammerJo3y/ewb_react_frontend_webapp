@@ -25,10 +25,11 @@ export default function Settings(){
 
   return (
     <div className="settings-div">
-      <h1 className='admin-heading'> Account Settings </h1>
+      <h1 className='settingsHeader'>Settings</h1>
+      <h2 className='admin-heading'> Account Settings </h2>
       <form className="fields-div" onSubmit={handleSubmit}>
 
-        <label className='settings-fields'>Phone Number</label>
+        <label for="phoneNumberId" className='settings-fields'>Phone Number</label>
         <input id="phoneNumberId" type="text" value={PhoneNumber} placeholder="Phone Number" onChange={handleChange}/>
         
         <label className='settings-fields'>Password</label>
@@ -37,14 +38,14 @@ export default function Settings(){
         <label className='settings-fields'>Email</label>
         <input id="emailId" type="text" value={Email} placeholder='Email' onChange={handleChange}/>
         
-        <div className='settings-submit-button-div'>
-          <button type="submit" className='settings-submit'>Submit</button>
+        <div className='submit-button-cell'>
+          <button type="submit">Submit</button>
         </div>
       </form>
       
       
-      <h1 className='admin-heading'> Add a New Admin </h1>
-      <form className='add-admin-fields-div' onSubmit={handleNewAdmin}>
+      <h2 className='admin-heading'> Add a New Admin </h2>
+      <form className='fields-div' onSubmit={handleNewAdmin}>
         <label className='settings-fields'>Full Name</label>
         <input id="newFullNameId"type="text"/>
         
@@ -57,8 +58,8 @@ export default function Settings(){
         <label className='settings-fields'>Email</label>
         <input id="newEmailId" type="text"/>
 
-        <div className='settings-submit-button-div'>
-          <button type="submit" className='settings-submit'>Submit</button>
+        <div className='submit-button-cell'>
+          <button type="submit">Submit</button>
         </div>
       </form>
     </div>
