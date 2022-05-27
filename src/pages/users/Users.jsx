@@ -1,38 +1,44 @@
 import { React, useEffect, useState } from 'react'
-
+import { useQuery } from '@apollo/client';
 import './users.css'
 import MatUITable from '../../components/table/Table'
-
+import { clients_and_operators } from '../../graphql/queries'
 const columns = [
-  {id: "name", label: "Name"},
-  {id: "phone", label: "Mobile Number"},
-  {id: "location", label: "Location"},
-]
+  { field: "id", headerName: "ID", flex: 1 },
+  { field: "name", headerName: "Name", flex: 1 },
+  { field: "phone_number", headerName: "Phone Number", flex: 1 },
+  { field: "role", headerName: "Role", flex: 1 },
+  { field: "username", headerName: "Username", flex: 1 },
 
-const data = [
-  {name: "Jeff", phone: "0123456789", location: "home"},
-  {name: "Jeff", phone: "0123456789", location: "home"},
-  {name: "Jason", phone: "0123456789", location: "home"},
-  {name: "Bill", phone: "1234567890", location: "work"},
-  {name: "Bethany", phone: "1234567890", location: "work"}
-]
+];
+
 
 export default function Users() {
-
-  const [filter, setFilter] = useState("");
-  const [filteredItems, setFilteredItems] = useState(data);
+const result= useQuery(clients_and_operators);
+  const [filter, setFilter] = useState([]);
+  const [filteredItems, setFilteredItems] = useState({});
 
   useEffect(() => {
-    const key = "name";
-
-    let items = data.filter((row) => {
+    const keys = Object.keys(filter);;
+    if (!result.loading) {
+      console.log( result.data.ClientsAndOperators);
+    let items = result.data.ClientsAndOperators.filter((row) => {
       let isMatch = true;
+        keys.forEach((key) => {
       if (!row[key].toString().toLowerCase().startsWith(filter.toLowerCase())) isMatch = false;
+             });
       return isMatch;
     });
     setFilteredItems(items);
-  }, [filter]);
+  }
+  }, [filter , result.loading]);
 
+  if(result.loading){
+    console.log('LOADING')
+    return(
+      <div>...loading</div>
+    )
+  }
   return (
     <div className="usersContainer">
       <h1 className="usersHeading">Users</h1>

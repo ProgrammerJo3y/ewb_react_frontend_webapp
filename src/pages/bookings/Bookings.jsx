@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { get_all_bookings } from '../../graphql/queries'
 import MatUITable from "../../components/table/Table";
 
-import dummyData from "./booking";
+
 
 const columns = [
   { field: "id", headerName: "ID", flex: 1 },
