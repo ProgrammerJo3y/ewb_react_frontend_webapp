@@ -9,7 +9,7 @@ import dummyData from "./booking";
 const columns = [
   { field: "id", headerName: "ID", flex: 1 },
   { field: "transaction_location", headerName: "Location", flex: 1 },
-  { field: "trasnaction_notes", headerName: "Notes", flex: 1 },
+  { field: "transaction_notes", headerName: "Notes", flex: 1 },
   { field: "user_client_id", headerName: "Client ID", flex: 1 },
   { field: "transaction_date", headerName: "Date", flex: 1 },
   { field: "transaction_time", headerName: "Time", flex: 1 },
@@ -20,11 +20,24 @@ export default function Bookings() {
   const result = useQuery(get_all_bookings);
   const [filteredItems, setFilteredItems] = useState([]);
   const [filter, setFilter] = useState({});
+  const [resultCopy, setResultCopy] = useState(result);
+
+  function formatDates() {
+    return result.data.getAllBookings.map((item => {
+      const object = Object.assign({}, item, {transaction_date: new Date(item.transaction_time).toLocaleDateString()});
+      object['transaction_time'] = new Date(item.transaction_time).toLocaleTimeString();
+      return object;
+    }));
+  }
 
   useEffect(() => {
     const keys = Object.keys(filter);
     if (!result.loading) {
-      let items = result.data.getAllBookings.filter((row) => {
+
+      // Assign query results to an extensible copy and add a date field 'transaction_date'
+      const resultCopy = formatDates();
+
+      let items = resultCopy.filter((row) => {
         let isMatch = true;
         keys.forEach((key) => {
           console.log(row[key] , filter[key]);
