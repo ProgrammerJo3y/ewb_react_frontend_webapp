@@ -10,21 +10,35 @@ import { booking_data } from '../../graphql/queries.jsx';
 import { user_data } from '../../graphql/queries.jsx';
 
 export default function Reports() {
-  const [getBookingData, { bookloading, bookerror, bookdata }] = useLazyQuery(booking_data);
-  const [getUserData, { userloading, usererror, userdata }] = useLazyQuery(user_data);
+  const [getBookingData, { loading: bookingsLoading, error: bookingsError, data: bookingsData }] = useLazyQuery(booking_data, {
+    notifyOnNetworkStatusChange: true
+  });
+  const [getUserData, { loading: usersLoading, error: usersError, data: usersData }] = useLazyQuery(user_data, {
+    notifyOnNetworkStatusChange: true
+  });
 
-  // General filter options
-  const usageData = ["Bookings", "Clients", "Stations"]
-  const groupTypeOptions = ["No grouping", "Time of Day", "Week Days", "Months", "Years", "Users", "Operators"];
+  const [reportData, setReportData] = useState({});
+
+  // Query options
+  const usageData = ["Bookings", "Users"] // Which query to use
+  const groupTypeOptions = ["Monthly", "Yearly"]; // What value to show along the x-axis
+  const userOptions = ["Client", "Operator"]; // Option greyed out when "Bookings" query selected
+
   const locationOptions = ["All", "Station 1", "Station 2", "Station 3"];
-  const clientOptions = ["All", "User 1", "User 2", "User 3"]
-  const operatorOptions = ["All", "Operator 1", "Operator 2", "Operator 3"]
+  const clientOptions = ["All", "User 1", "User 2", "User 3"];
+  const operatorOptions = ["All", "Operator 1", "Operator 2", "Operator 3"];
   
   // Charts focus on showing booking quantity on the y-axis
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState({
+    queryType: "Bookings",
+    groupingType: "Monthly",
+    startDate: "2021/06/13",
+    endDate: "2022/06/18",
+    userType: "Client"
+  });
 
-  // Data returned from back-end query
-  const [reportData, setReportData] = useState(usageData[0]); // Data that is filtered for display. Default is booking data
+  // Selected query to run, kept separate from the filtering options
+  // const [queryType, setQueryType] = useState("Bookings"); // Data that is filtered for display. Default is booking data
 
   function updateFilter(key, value) {
     if (value) setFilter({ ...filter, [key]:value });
@@ -33,16 +47,39 @@ export default function Reports() {
       delete newFilter[key];
       setFilter(newFilter);
     }
-    getBookingData({
-      variables: {startDate: "2021/06/13", endDate: "2022/06/18", grouping: "monthly"}
-    });
-    const {booktotal, bookyear, bookmonth} = bookdata;
-
-    getUserData({
-      variables: {startDate: "2021/06/13", endDate: "2022/06/18", grouping: "monthly", userType: "client"}
-    });
-    const {usertotal, useryear, usermonth} = userdata;
+    // Cannot call query here as filter has not yet been updated
   }
+
+  function loadQuery() {
+    if (filter.queryType==="Bookings") {
+      getBookingData({
+        // Dummy entry
+        // variables: {startDate: "2021/06/13", endDate: "2022/06/18", grouping: "monthly"}
+        variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase()}
+      });
+    } else if (filter.queryType==="Users") {
+      getUserData({
+        variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase(), userType: (filter.userType)==="All" ? undefined : filter.userType.toLowerCase()}
+      });
+    }
+    // Cannot set reportData here as query will not yet be complete
+  }
+
+  function loadData() {
+
+  }
+
+  useEffect(() => {
+    if (!bookingsLoading && filter.queryType==="Bookings") {
+      setReportData(bookingsData);
+    }
+    if (!usersLoading && filter.queryType==="Users") {
+      setReportData(usersData);
+    }
+  }, [bookingsLoading, usersLoading]);
+
+  // if (bookingsLoading || usersLoading) return <p>Loading ...</p>;
+  if (bookingsError || usersError) return `Error! ${bookingsError} ${usersError}`;
 
   return (
     <div className="reportsContainer">
@@ -53,16 +90,15 @@ export default function Reports() {
         <div className="reportsFilter">
           <h2>Filter</h2>
           
-          {/* <h3>Data</h3> */}
           <FormControl variant='outlined'>
             <InputLabel id="data-select-label" className='filterInput'>Selected data</InputLabel>
             <Select
               className='filterInput'
               variant='outlined'
-              value={reportData}
+              value={filter.queryType}
               labelId="data-select-label"
               label={"Selected data"}
-              onChange={(e) => setReportData(e.target.value)}
+              onChange={(e) => updateFilter("queryType", e.target.value)}
             >
               {usageData.map(item => {
                 return (
@@ -72,8 +108,6 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          {/* <h3>Group by</h3> */}
-          {/* Input for date sorting/binning along the x-axis */}
           <FormControl variant='outlined' className='filterInput'>
             <InputLabel id="grouping-type-select-label" className='filterInput'>Group by</InputLabel>
             <Select
@@ -93,8 +127,6 @@ export default function Reports() {
             </Select>
           </FormControl>
           
-          {/* <h3>Date Range</h3> */}
-          {/* Date range input */}
           <div class="dateRangeContainer">
             <TextField
               className='filterInput'
@@ -120,19 +152,18 @@ export default function Reports() {
             />
           </div>
 
-          {/* <h3>Location</h3> */}
-            <FormControl variant='outlined'>
-            <InputLabel id="location-select-label" className='filterInput'>Location</InputLabel>
+          <FormControl variant='outlined'>
+            <InputLabel id="location-select-label" className='filterInput'>User Type</InputLabel>
             <Select
               className='filterInput'
               variant='outlined'
-              value={filter.location}
-              defaultValue={locationOptions[0]}
+              value={filter.userType}
+              defaultValue={userOptions[0]}
               labelId="location-select-label"
-              label={"Location"}
-              onChange={(e) => updateFilter("location", e.target.value)}
+              label={"User Type"}
+              onChange={(e) => updateFilter("userType", e.target.value)}
             >
-              {locationOptions.map(item => {
+              {userOptions.map(item => {
                 return (
                   <MenuItem value={item}>{item}</MenuItem>
                 )
@@ -140,8 +171,7 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          {/* <h3>Client</h3> */}
-            <FormControl variant='outlined'>
+          {/* <FormControl variant='outlined'>
             <InputLabel id="client-select-label" className='filterInput'>Client</InputLabel>
             <Select
               className='filterInput'
@@ -160,8 +190,7 @@ export default function Reports() {
             </Select>
           </FormControl>
 
-          {/* <h3>Operator</h3> */}
-            <FormControl variant='outlined'>
+          <FormControl variant='outlined'>
             <InputLabel id="operator-select-label" className='filterInput'>Operator</InputLabel>
             <Select
               className='filterInput'
@@ -178,7 +207,7 @@ export default function Reports() {
                 )
               })}
             </Select>
-          </FormControl>
+          </FormControl> */}
 
           {/* <h3>Booking Status</h3> 
           <FormControlLabel
@@ -214,13 +243,12 @@ export default function Reports() {
               }}
               onChange={(e) => updateFilter("bookingCost", e.target.value)}
             /> */}
-
+          <button onClick={() => loadQuery()}>Load Chart</button>
         </div>
         <div className="reportsGraph">
           <h2>Report</h2>
-          
-          <Barchart/>
-
+          <Barchart data={(filter.queryType === "Bookings" ? bookingsData : usersData)} filter={filter}/>
+          {/* <Barchart data={reportData} filter={filter}/> */}
         </div>
       </div>
     </div>
