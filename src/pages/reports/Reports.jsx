@@ -40,43 +40,38 @@ export default function Reports() {
   // Selected query to run, kept separate from the filtering options
   // const [queryType, setQueryType] = useState("Bookings"); // Data that is filtered for display. Default is booking data
 
-  function updateFilter(key, value) {
-    if (value) setFilter({ ...filter, [key]:value });
+  async function updateFilter(key, value) {
+    if (value) await setFilter({ ...filter, [key]:value });
     if (!value) {
       const newFilter = { ...filter };
       delete newFilter[key];
-      setFilter(newFilter);
+      await setFilter(newFilter);
     }
-    // Cannot call query here as filter has not yet been updated
   }
 
-  function loadQuery() {
+  async function loadQuery() {
     if (filter.queryType==="Bookings") {
-      getBookingData({
+      await getBookingData({
         // Dummy entry
         // variables: {startDate: "2021/06/13", endDate: "2022/06/18", grouping: "monthly"}
         variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase()}
       });
     } else if (filter.queryType==="Users") {
-      getUserData({
+      await getUserData({
         variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase(), userType: (filter.userType)==="All" ? undefined : filter.userType.toLowerCase()}
       });
     }
     // Cannot set reportData here as query will not yet be complete
   }
 
-  function loadData() {
-
-  }
-
-  useEffect(() => {
-    if (!bookingsLoading && filter.queryType==="Bookings") {
-      setReportData(bookingsData);
-    }
-    if (!usersLoading && filter.queryType==="Users") {
-      setReportData(usersData);
-    }
-  }, [bookingsLoading, usersLoading]);
+  // useEffect(() => {
+  //   if (!bookingsLoading && filter.queryType==="Bookings") {
+  //     setReportData(bookingsData);
+  //   }
+  //   if (!usersLoading && filter.queryType==="Users") {
+  //     setReportData(usersData);
+  //   }
+  // }, [bookingsLoading, usersLoading]);
 
   // if (bookingsLoading || usersLoading) return <p>Loading ...</p>;
   if (bookingsError || usersError) return `Error! ${bookingsError} ${usersError}`;
