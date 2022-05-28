@@ -1,8 +1,9 @@
 import { React, useEffect, useState } from 'react'
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import './users.css'
 import MatUITable from '../../components/table/Table'
-import { clients_and_operators } from '../../graphql/queries'
+import { clients_and_operators } from '../../graphql/queries';
+import { delete_user } from '../../graphql/mutations';
 const columns = [
   { field: "id", headerName: "ID", flex: 1 },
   { field: "name", headerName: "Name", flex: 1 },
@@ -14,14 +15,33 @@ const columns = [
 
 
 export default function Users() {
+
+
 const result= useQuery(clients_and_operators);
   const [filter, setFilter] = useState([]);
   const [filteredItems, setFilteredItems] = useState({});
+  const [DeleteUser, { token, error }] = useMutation(delete_user);
+ const [selectionModel, setSelectionModel] = useState([]);
 
+  const  DeleteUseronClick = async e =>{
+    // if(selectionModel){
+    // console.log(selectionModel);
+await DeleteUser ({
+  variables: {
+    userId : selectionModel.length
+  },
+  result :{
+    token, error
+  }
+});
+    // }else {
+return;
+    // }
+  }
   useEffect(() => {
     const keys = Object.keys(filter);;
     if (!result.loading) {
-      console.log( result.data.ClientsAndOperators);
+      // console.log( result.data.ClientsAndOperators);
     let items = result.data.ClientsAndOperators.filter((row) => {
       let isMatch = true;
         keys.forEach((key) => {
@@ -34,7 +54,7 @@ const result= useQuery(clients_and_operators);
   }, [filter , result.loading]);
 
   if(result.loading){
-    console.log('LOADING')
+    // console.log('LOADING')
     return(
       <div>...loading</div>
     )
@@ -60,11 +80,21 @@ const result= useQuery(clients_and_operators);
         <input placeholder='Filter Users' onChange={(e) => setFilter(e.target.value)}></input>
         <div className='userControls'>
           <button className='users_button'>Edit</button>
-          <button className='users_button'>Delete</button>
+          <button className='users_button' onClick={DeleteUseronClick}>Delete</button>
         </div>
       </div>
       <div className='usersTableContainer'>
-        <MatUITable columns={columns} rows={filteredItems} />
+        <MatUITable 
+        columns={columns}
+        rows={filteredItems} 
+        checkboxSelection
+      //   onSelectionModelChange={(newSelection) => {
+      //     console.log('newSelection ',newSelection);
+      //     setSelectionModel(newSelection);
+      // }}
+    //     //  selectionModel={selectionModel}
+     />
+    {/* //       {selectionModel.map(val =><h1>{val}</h1>)} */}
       </div>
     </div>
   )
