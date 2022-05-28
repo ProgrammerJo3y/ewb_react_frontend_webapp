@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const sampleData = [
@@ -46,14 +46,22 @@ const sampleData = [
   },
 ];
 
-export default function barchart() {
+
+export default function Barchart(props) {
+
+  console.log(props.data?.BookingCountByDate);
+
+  useEffect(() => {
+
+  }, [props]);
     
+  if (typeof props.data === "undefined") return <p>Data loading...</p>;
     return (
         <ResponsiveContainer width="99%" height="100%">
             <BarChart
                 width={500}
                 height={300}
-                data={sampleData}
+                data={(props.filter.queryType==="Bookings") ? props.data.BookingCountByDate : props.data.UserCountByDate }
                 margin={{
                     top: 5,
                     right: 30,
@@ -62,12 +70,16 @@ export default function barchart() {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
+                {(props.filter.groupingType === "Monthly") ? <>
+                  <XAxis xAxisId={0} dy={0} dx={-0} label={{ value: '', angle: 0, position: 'bottom' }} interval={0} dataKey="month" tickLine={true} tick={{fontSize: 9, angle: 0 }} />
+                  <XAxis xAxisId={1} dy={0} dx={0} label={{ value: '', angle: 0, position: 'bottom' }} interval={12} dataKey="year" tickLine={true} tick={{fontSize: 12, angle: 0}} /> </>:
+                  <XAxis xAxisId={0} dy={0} dx={0} label={{ value: '', angle: 0, position: 'bottom' }} dataKey="year" tickLine={true} tick={{fontSize: 12, angle: 0}} />}
+
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="pv" fill="#8884d8" />
-                <Bar dataKey="uv" fill="#82ca9d" />
+                <Bar dataKey="total" fill="#8884d8" />
+                {/* <Bar dataKey="uv" fill="#82ca9d" /> */}
             </BarChart>
         </ResponsiveContainer>
     )

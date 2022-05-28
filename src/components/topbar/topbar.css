@@ -43,4 +43,12 @@
 img {
     max-width: 15%;
     height: auto;
-  }
+}
+
+.logoutBtn {
+    display: inline-flex;
+    align-items: center; 
+}
+.logoutBtn:hover{
+    background-color: #f5a2a2;
+}
