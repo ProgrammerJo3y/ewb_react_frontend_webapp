@@ -48,6 +48,6 @@ export const get_all_bookings = gql`
             user_client_id
             transaction_time
             transaction_notes
-  }
-}
+        }
+    }
 `;
