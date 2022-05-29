@@ -4,18 +4,17 @@ import Barchart from '../../components/barchart/Barchart'
 import { useEffect, useState} from 'react'
 import { Select, FormControl, MenuItem, InputLabel, FormControlLabel, TextField, Checkbox } from '@mui/material'
 
-import { useQuery } from '@apollo/client';
-import { useLazyQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 import { booking_data } from '../../graphql/queries.jsx';
 import { user_data } from '../../graphql/queries.jsx';
 
 export default function Reports() {
-  const [getBookingData, { loading: bookingsLoading, error: bookingsError, data: bookingsData }] = useLazyQuery(booking_data, {
-    notifyOnNetworkStatusChange: true
-  });
-  const [getUserData, { loading: usersLoading, error: usersError, data: usersData }] = useLazyQuery(user_data, {
-    notifyOnNetworkStatusChange: true
-  });
+  // const [getBookingData, { loading: bookingsLoading, error: bookingsError, data: bookingsData }] = useLazyQuery(booking_data, {
+  //   notifyOnNetworkStatusChange: true
+  // });
+  // const [getUserData, { loading: usersLoading, error: usersError, data: usersData }] = useLazyQuery(user_data, {
+  //   notifyOnNetworkStatusChange: true
+  // });
 
   const [reportData, setReportData] = useState({});
 
@@ -37,9 +36,6 @@ export default function Reports() {
     userType: "Client"
   });
 
-  // Selected query to run, kept separate from the filtering options
-  // const [queryType, setQueryType] = useState("Bookings"); // Data that is filtered for display. Default is booking data
-
   async function updateFilter(key, value) {
     if (value) await setFilter({ ...filter, [key]:value });
     if (!value) {
@@ -49,32 +45,24 @@ export default function Reports() {
     }
   }
 
-  async function loadQuery() {
-    if (filter.queryType==="Bookings") {
-      await getBookingData({
-        // Dummy entry
-        // variables: {startDate: "2021/06/13", endDate: "2022/06/18", grouping: "monthly"}
-        variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase()}
-      });
-    } else if (filter.queryType==="Users") {
-      await getUserData({
-        variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase(), userType: (filter.userType)==="All" ? undefined : filter.userType.toLowerCase()}
-      });
-    }
-    // Cannot set reportData here as query will not yet be complete
+  const bookingData = useQuery(booking_data, {
+    variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase()}
+  });
+
+  const userData = useQuery(user_data, {
+    variables: {startDate: filter.startDate.toString(), endDate: filter.endDate, grouping: filter.groupingType.toLowerCase(), userType: filter.userType.toLowerCase()}
+  });
+
+  useEffect(() => {
+    
+  }, [filter, bookingData.loading, userData.loading]);
+
+  if(bookingData.loading || userData.loading){
+    console.log('LOADING')
+    return(
+      <div>...loading</div>
+    )
   }
-
-  // useEffect(() => {
-  //   if (!bookingsLoading && filter.queryType==="Bookings") {
-  //     setReportData(bookingsData);
-  //   }
-  //   if (!usersLoading && filter.queryType==="Users") {
-  //     setReportData(usersData);
-  //   }
-  // }, [bookingsLoading, usersLoading]);
-
-  // if (bookingsLoading || usersLoading) return <p>Loading ...</p>;
-  if (bookingsError || usersError) return `Error! ${bookingsError} ${usersError}`;
 
   return (
     <div className="reportsContainer">
@@ -157,6 +145,7 @@ export default function Reports() {
               labelId="location-select-label"
               label={"User Type"}
               onChange={(e) => updateFilter("userType", e.target.value)}
+              disabled={(filter.queryType === "Bookings")}
             >
               {userOptions.map(item => {
                 return (
@@ -238,11 +227,12 @@ export default function Reports() {
               }}
               onChange={(e) => updateFilter("bookingCost", e.target.value)}
             /> */}
-          <button onClick={() => loadQuery()}>Load Chart</button>
+          {/* <button onClick={() => loadQuery()}>Load Chart</button> */}
         </div>
         <div className="reportsGraph">
           <h2>Report</h2>
-          <Barchart data={(filter.queryType === "Bookings" ? bookingsData : usersData)} filter={filter}/>
+          {/* <Barchart data={reportData} filter={filter}/> */}
+          <Barchart data={(filter.queryType === "Bookings" ? bookingData.data : userData.data)} filter={filter}/>
           {/* <Barchart data={reportData} filter={filter}/> */}
         </div>
       </div>

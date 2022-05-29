@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const sampleData = [
@@ -47,21 +47,25 @@ const sampleData = [
 ];
 
 
-export default function Barchart(props) {
+export default function Barchart({data, filter}) {
 
-  console.log(props.data?.BookingCountByDate);
+  const [chartData, setChartData] = useState({});
 
   useEffect(() => {
-
-  }, [props]);
+    if (filter.queryType === "Bookings") {
+      setChartData(data.BookingCountByDate);
+    } else {
+      setChartData(data.UserCountByDate);
+    }
+  }, [data, filter]);
     
-  if (typeof props.data === "undefined") return <p>Data loading...</p>;
+  if (typeof data === "undefined") return <p>Data loading...</p>;
     return (
         <ResponsiveContainer width="99%" height="100%">
             <BarChart
                 width={500}
                 height={300}
-                data={(props.filter.queryType==="Bookings") ? props.data.BookingCountByDate : props.data.UserCountByDate }
+                data={(filter.queryType==="Bookings") ? data.BookingCountByDate : data.UserCountByDate }
                 margin={{
                     top: 5,
                     right: 30,
@@ -70,7 +74,7 @@ export default function Barchart(props) {
                 }}
             >
                 <CartesianGrid strokeDasharray="3 3" />
-                {(props.filter.groupingType === "Monthly") ? <>
+                {(filter.groupingType === "Monthly") ? <>
                   <XAxis xAxisId={0} dy={0} dx={-0} label={{ value: '', angle: 0, position: 'bottom' }} interval={0} dataKey="month" tickLine={true} tick={{fontSize: 9, angle: 0 }} />
                   <XAxis xAxisId={1} dy={0} dx={0} label={{ value: '', angle: 0, position: 'bottom' }} interval={12} dataKey="year" tickLine={true} tick={{fontSize: 12, angle: 0}} /> </>:
                   <XAxis xAxisId={0} dy={0} dx={0} label={{ value: '', angle: 0, position: 'bottom' }} dataKey="year" tickLine={true} tick={{fontSize: 12, angle: 0}} />}
