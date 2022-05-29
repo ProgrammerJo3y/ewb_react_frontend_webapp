@@ -19,11 +19,14 @@ mutation DeleteUser($userId: String!) {
     error
   }
 }`;
-// export const admin_sign_up = gql`
-//     mutation AdminSignUp($location: String!, $name: String!, $password: String!, $phoneNumber: String!, $role: String!, $username: String!) {
-//         adminSignUp(location: $location, name: $name, password: $password, phone_number: $phoneNumber, role: $role, username: $username) {
-        
-//         }
-//     }
-// `;
+
+export const admin_sign_up = gql`
+    mutation AdminSignUp($name: String!, $password: String!, $phoneNumber: String!, $username: String!) {
+        adminSignUp(name: $name, password: $password, phone_number: $phoneNumber, username: $username) {
+            token
+            error
+        }
+    }
+`;
+
 

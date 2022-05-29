@@ -49,9 +49,9 @@ if(user.data.deleteUser.done){
       // console.log( result.data.ClientsAndOperators);
     let items = result.data.ClientsAndOperators.filter((row) => {
       let isMatch = true;
-        keys.forEach((key) => {
-      if (!row[key].toString().toLowerCase().startsWith(filter.toLowerCase())) isMatch = false;
-             });
+        // keys.forEach((key) => {
+      if (!row["name"].toString().toLowerCase().startsWith(filter.toString().toLowerCase())) isMatch = false;
+            //  });
       return isMatch;
     });
     setFilteredItems(items);
