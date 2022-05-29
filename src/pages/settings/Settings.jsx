@@ -51,11 +51,17 @@ export default function Settings(){
 
   const handleNewAdmin = async (event) => {
     event.preventDefault();
-    const error = await signUp({
+    const response = await signUp({
       name: newName,
       password: newPassword,
       phoneNumber: newPhoneNumber,
       username: newUsername,
+    })
+    .then(({ data }) => {
+      window.alert("Account signup successful");
+    })
+    .catch(e => {
+      window.alert("Account signup unsuccessful:" + e);
     });
   }
 
