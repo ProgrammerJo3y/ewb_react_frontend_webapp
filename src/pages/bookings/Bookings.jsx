@@ -1,11 +1,9 @@
 import "./bookings.css";
 import { useState, useEffect } from "react";
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
 import { get_all_bookings } from '../../graphql/queries'
+import {  delete_booking } from '../../graphql/mutations'
 import MatUITable from "../../components/table/Table";
-
-
-
 const columns = [
   { field: "id", headerName: "ID", flex: 1 },
   { field: "transaction_location", headerName: "Location", flex: 1 },
@@ -21,6 +19,8 @@ export default function Bookings() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [filter, setFilter] = useState({});
   const [resultCopy, setResultCopy] = useState(result);
+  const [DeleteBooking, { done, error }] = useMutation(delete_booking);
+  const [selectionModel, setSelectionModel] = useState([]);
 
   function formatDates() {
     return result.data.getAllBookings.map((item => {
@@ -29,7 +29,23 @@ export default function Bookings() {
       return object;
     }));
   }
+ const  deleteBookingOnClick = async e =>{
+    e.preventDefault();
+    if(selectionModel){
 
+      for(const selection of selectionModel){
+    const user = await DeleteBooking ({
+    variables:  {bookingId : selection},
+    result :  {done, error}
+});
+if(user.data.deleteBooking.done){
+  
+ setFilteredItems((filteredItems) =>  filteredItems.filter( (r) => 
+ !selectionModel.includes(r.id)));
+}
+  }
+}
+  }
   useEffect(() => {
     const keys = Object.keys(filter);
     if (!result.loading) {
@@ -115,10 +131,10 @@ export default function Bookings() {
           value={filter.notes}
           onChange={(e) => updateFilter("transaction_notes", e.target.value)}
         />
-        <button className="exportDataButton">Export Data</button>
+        <button className="exportDataButton" onClick={deleteBookingOnClick}>Delete</button>
       </div>
       <div className="bookingsTableContainer" >
-        <MatUITable columns={columns} rows={filteredItems} />
+        <MatUITable columns={columns} rows={filteredItems}   setSelectionModel={setSelectionModel}/>
       </div>
     </div>
   );

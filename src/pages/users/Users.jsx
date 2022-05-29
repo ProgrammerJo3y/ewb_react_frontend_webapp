@@ -44,7 +44,7 @@ if(user.data.deleteUser.done){
 }
   }
   useEffect(() => {
-    const keys = Object.keys(filter);;
+    const keys = Object.keys(filter);
     if (!result.loading) {
       // console.log( result.data.ClientsAndOperators);
     let items = result.data.ClientsAndOperators.filter((row) => {
@@ -84,7 +84,6 @@ if(user.data.deleteUser.done){
       <div className='usersFilterContainer'>
         <input placeholder='Filter Users' onChange={(e) => setFilter(e.target.value)}></input>
         <div className='userControls'>
-          <button className='users_button'>Edit</button>
           <button className='users_button' onClick={DeleteUseronClick}>Delete</button>
         </div>
       </div>
