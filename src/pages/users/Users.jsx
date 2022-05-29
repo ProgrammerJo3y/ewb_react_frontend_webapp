@@ -17,26 +17,31 @@ const columns = [
 export default function Users() {
 
 
-const result= useQuery(clients_and_operators);
+  const result= useQuery(clients_and_operators);
   const [filter, setFilter] = useState([]);
   const [filteredItems, setFilteredItems] = useState({});
-  const [DeleteUser, { token, error }] = useMutation(delete_user);
- const [selectionModel, setSelectionModel] = useState([]);
+  const [DeleteUser, { done, error }] = useMutation(delete_user);
+  const [selectionModel, setSelectionModel] = useState([]);
 
   const  DeleteUseronClick = async e =>{
-    // if(selectionModel){
-    // console.log(selectionModel);
-await DeleteUser ({
-  variables: {
-    userId : selectionModel.length
-  },
-  result :{
-    token, error
-  }
+    e.preventDefault();
+    // console.log('selectionModel[0]',selectionModel[0]);
+    if(selectionModel){
+
+      for(const selection of selectionModel){
+    const user = await DeleteUser ({
+    variables:  {userId : selection},
+    result :  {done, error}
 });
-    // }else {
-return;
-    // }
+// console.log(filteredItems);
+// console.log(user.data.deleteUser.done);
+if(user.data.deleteUser.done){
+  
+ setFilteredItems((filteredItems) =>  filteredItems.filter( (r) => 
+ !selectionModel.includes(r.id)));
+}
+  }
+}
   }
   useEffect(() => {
     const keys = Object.keys(filter);;
@@ -87,14 +92,8 @@ return;
         <MatUITable 
         columns={columns}
         rows={filteredItems} 
-        checkboxSelection
-      //   onSelectionModelChange={(newSelection) => {
-      //     console.log('newSelection ',newSelection);
-      //     setSelectionModel(newSelection);
-      // }}
-    //     //  selectionModel={selectionModel}
-     />
-    {/* //       {selectionModel.map(val =><h1>{val}</h1>)} */}
+        setSelectionModel={setSelectionModel}
+        />
       </div>
     </div>
   )

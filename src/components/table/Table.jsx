@@ -8,7 +8,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
-
 import './table.css';
 
 // const columns = [
@@ -44,10 +43,10 @@ import './table.css';
 //   { id: 90, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 // ];
 
-export default function StickyHeadTable({columns, rows} , selectionModel) {
+export default function StickyHeadTable({columns, rows , setSelectionModel}) {
 
   // const [tableSelection, setTableSelection] = React.useState();
- const [selectionModel, setSelectionModel] = React.useState([]);
+//  const [selectionModel, setSelectionModel] = React.useState([]);
   React.useEffect(() => {
 
   });
@@ -80,7 +79,8 @@ export default function StickyHeadTable({columns, rows} , selectionModel) {
        onSelectionModelChange={(newSelection) => {
           console.log('newSelection ',newSelection);
           setSelectionModel(newSelection);
-      }}
+      }
+    }
         //  selectionModel={selectionModel}
      />
           // {/* {selectionModel.map(val =><h1>{val}</h1>)} */}
