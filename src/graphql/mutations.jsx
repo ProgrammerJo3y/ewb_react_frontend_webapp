@@ -29,4 +29,12 @@ export const admin_sign_up = gql`
     }
 `;
 
+export const delete_booking = gql`
+mutation DeleteBooking($bookingId: String!) {
+  deleteBooking(booking_id: $bookingId) {
+    done
+    error
+  }
+}`
+;
 
