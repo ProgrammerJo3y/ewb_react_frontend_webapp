@@ -16,8 +16,8 @@
 .charts {
     display: flex;
     flex-direction: row;
-    min-height: 40vh;
-    max-height: 40vh;
+    min-height: 50vh;
+    max-height: 50vh;
 }
 
 .chartWrapper {

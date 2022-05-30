@@ -29,21 +29,21 @@ export default function Users() {
     if(selectionModel){
 
       for(const selection of selectionModel){
-    const user = await DeleteUser ({
-    variables:  {userId : selection},
-    result :  {done, error}
-});
-// console.log(filteredItems);
-// console.log(user.data.deleteUser.done);
-if(user.data.deleteUser.done){
-  
- setFilteredItems((filteredItems) =>  filteredItems.filter( (r) => 
- !selectionModel.includes(r.id)));
-}
-result.refetch();
+        const user = await DeleteUser ({
+          variables:  {userId : selection},
+          result :  {done, error}
+        });
+        // console.log(filteredItems);
+        // console.log(user.data.deleteUser.done);
+        if(user.data.deleteUser.done){
+          setFilteredItems((filteredItems) =>  filteredItems.filter( (r) => 
+          !selectionModel.includes(r.id)));
+        }
+        result.refetch();
+      }
+    }
   }
-}
-  }
+
   useEffect(() => {
     const keys = Object.keys(filter);
     if (!result.loading) {
