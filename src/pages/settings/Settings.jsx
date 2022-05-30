@@ -61,7 +61,7 @@ export default function Settings(){
       window.alert("Account signup successful");
     })
     .catch(e => {
-      window.alert("Account signup unsuccessful:" + e);
+      window.alert("Account signup unsuccessful:" + "\n\nUsername already in use");
     });
   }
 

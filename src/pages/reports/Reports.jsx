@@ -31,7 +31,7 @@ export default function Reports() {
   const [filter, setFilter] = useState({
     queryType: "Bookings",
     groupingType: "Monthly",
-    startDate: "2021/06/13",
+    startDate: "2020/06/13",
     endDate: "2022/06/18",
     userType: "Client"
   });

@@ -53,11 +53,6 @@ export default function Dashboard() {
             <Barchart data={result.data} filter={filter}/>
           </div>
         </div>
-
-        <div>
-          <h2>Station Details</h2>
-          {/* <Table columns={tableHeader} rows={rows}/> */}
-        </div>
     </div>
   )
 }
