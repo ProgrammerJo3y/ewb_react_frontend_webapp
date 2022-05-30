@@ -29,4 +29,10 @@ export const admin_sign_up = gql`
     }
 `;
 
-
+export const edit_booking = gql`
+    mutation EditBooking($bookingId: String!, $transactionNotes: String, $dateAsString: String, $userClientId: String, $transactionLocation: String) {
+        editBooking(booking_id: $bookingId, transaction_notes: $transactionNotes, dateAsString: $dateAsString, user_client_id: $userClientId, transaction_location: $transactionLocation) {
+            id
+        }
+    }
+`;

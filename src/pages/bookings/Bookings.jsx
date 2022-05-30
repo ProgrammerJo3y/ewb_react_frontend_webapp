@@ -1,26 +1,33 @@
 import "./bookings.css";
-import { useState, useEffect } from "react";
-import { useQuery } from '@apollo/client';
+import { useState, useEffect, useCallback } from "react";
+import { useQuery, useMutation } from '@apollo/client';
 import { get_all_bookings } from '../../graphql/queries'
+import { edit_booking } from '../../graphql/mutations'
 import MatUITable from "../../components/table/Table";
+import { resolveReadonlyArrayThunk } from "graphql";
+import moment from 'moment';
 
 
 
 const columns = [
   { field: "id", headerName: "ID", flex: 1 },
-  { field: "transaction_location", headerName: "Location", flex: 1 },
-  { field: "transaction_notes", headerName: "Notes", flex: 1 },
-  { field: "user_client_id", headerName: "Client ID", flex: 1 },
-  { field: "transaction_date", headerName: "Date", flex: 1 },
-  { field: "transaction_time", headerName: "Time", flex: 1 },
+  { field: "transaction_location", headerName: "Location", flex: 1, editable: true },
+  { field: "transaction_notes", headerName: "Notes", flex: 1, editable: true },
+  { field: "user_client_id", headerName: "Client ID", flex: 1, editable: true },
+  { field: "transaction_date", headerName: "Date", flex: 1, editable: true },
+  { field: "transaction_time", headerName: "Time", flex: 1, editable: true },
 
 ];
 
 export default function Bookings() {
   const result = useQuery(get_all_bookings);
+  const [EditBooking, { id }] = useMutation(edit_booking);
+
   const [filteredItems, setFilteredItems] = useState([]);
   const [filter, setFilter] = useState({});
   const [resultCopy, setResultCopy] = useState(result);
+  const [selectionModel, setSelectionModel] = useState([]);
+  const [onEdit, setOnEdit] = useState(false);
 
   function formatDates() {
     return result.data.getAllBookings.map((item => {
@@ -28,6 +35,31 @@ export default function Bookings() {
       object['transaction_time'] = new Date(item.transaction_time).toLocaleTimeString();
       return object;
     }));
+  }
+
+  // function confirmRowEdit(message) {
+  //   return new Promise(function (resolve, reject) {
+  //     let confirmed = window.confirm(message);
+  //     return confirmed ? resolve(true) : reject(false);
+  //   })
+  // }
+
+  const handleRowEditCommit = (newRow, oldRow) =>{
+    // const message = "The following changes will be saved: \n" + "New Booking: \n" + newRow.toString() + "\nOld Booking: \n" + oldRow.toString()
+    // return new Promise(function (resolve, reject) {
+    //   const promise = confirmRowEdit(message)
+    //   .then(async () => {
+        console.log(newRow);
+        const mergedDate = new Date((moment(newRow.transaction_date, "DD/MM/YYYY").format("MM/DD/YYYY")) + " " + newRow.transaction_time).toString();
+        console.log(mergedDate);
+        const user = EditBooking ({
+          variables:  {bookingId : newRow.id, transactionLocation: newRow.transaction_location, transactionNotes: newRow.transaction_notes, userClientId: newRow.user_client_id, dateAsString: mergedDate},
+          result :  {id}
+        });
+        window.alert("Booking updated successfully")
+    //   })
+    //   return promise ? resolve(true) : reject(false);
+    // })
   }
 
   useEffect(() => {
@@ -47,7 +79,7 @@ export default function Bookings() {
       });
       setFilteredItems(items);
     }
-  }, [filter, result.loading]);
+  }, [filter, result.loading, onEdit]);
 
   if(result.loading){
     console.log('LOADING')
@@ -118,7 +150,11 @@ export default function Bookings() {
         <button className="exportDataButton">Export Data</button>
       </div>
       <div className="bookingsTableContainer" >
-        <MatUITable columns={columns} rows={filteredItems} />
+        <MatUITable 
+        columns={columns} 
+        rows={filteredItems} 
+        setSelectionModel={setSelectionModel}
+        handleOnEditCommit={handleRowEditCommit} />
       </div>
     </div>
   );
