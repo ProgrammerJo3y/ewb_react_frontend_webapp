@@ -40,6 +40,7 @@ if(user.data.deleteUser.done){
  setFilteredItems((filteredItems) =>  filteredItems.filter( (r) => 
  !selectionModel.includes(r.id)));
 }
+result.refetch();
   }
 }
   }

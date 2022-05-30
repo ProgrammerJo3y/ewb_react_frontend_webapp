@@ -44,6 +44,7 @@ if(user.data.deleteBooking.done){
  !selectionModel.includes(r.id)));
 }
   }
+  result.refetch();
 }
   }
   useEffect(() => {
