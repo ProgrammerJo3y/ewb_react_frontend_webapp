@@ -135,6 +135,13 @@ export default function Bookings() {
         <input
           className="filter"
           type="text"
+          placeholder="Filter Notes"
+          value={filter.notes}
+          onChange={(e) => updateFilter("transaction_notes", e.target.value)}
+        />
+        <input
+          className="filter"
+          type="text"
           placeholder="Filter UserID"
           value={filter.userId}
           onChange={(e) => updateFilter("user_client_id", e.target.value)}
@@ -156,13 +163,6 @@ export default function Bookings() {
           placeholder="Filter Time"
           value={filter.time}
           onChange={(e) => updateFilter("transaction_time", e.target.value)}
-        />
-        <input
-          className="filter"
-          type="text"
-          placeholder="Filter Notes"
-          value={filter.notes}
-          onChange={(e) => updateFilter("transaction_notes", e.target.value)}
         />
         <button className="exportDataButton" onClick={deleteBookingOnClick}>Delete</button>
       </div>

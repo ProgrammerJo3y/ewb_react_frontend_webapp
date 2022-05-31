@@ -33,7 +33,7 @@ export default function Sidebar() {
             Settings
           </NavLink>
         </div>
-        <div className="footer">&copy; Mamma's Leaf</div>
+        <div className="footer">Mamma's Leaf</div>
       </div>
     </div>
   )
