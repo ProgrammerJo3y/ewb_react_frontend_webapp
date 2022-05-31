@@ -60,7 +60,7 @@ export default function Login({ callback }) {
 						</button>
 					</div>
 				</form>
-				<p className="copyright-text"> © Mammalaef 2022</p>
+				<p className="copyright-text">Mammalaef 2022</p>
 			</div>
 		</div>
 	);
