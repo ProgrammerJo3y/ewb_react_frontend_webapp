@@ -23,21 +23,29 @@ export const user_data = gql`
 `;
 
 export const clients_and_operators = gql`
-query ClientsAndOperators {
-  ClientsAndOperators {
+    query ClientsAndOperators {
+    ClientsAndOperators {
+        id
+        is_active
+        name
+        phone_number
+        role
+        username
+        created_at
+        }
+    }
+`;
+
+export const get_admin_user = gql`
+   query GetAdminUser($userId: String!) {
+  getAdminUser(user_id: $userId) {
     id
-    is_active
     name
     phone_number
-    role
     username
-    created_at
   }
 }
-`
-;
-
-
+`;
 
 
 export const get_all_bookings = gql`
