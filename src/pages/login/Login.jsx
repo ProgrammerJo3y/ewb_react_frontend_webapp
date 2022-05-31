@@ -18,7 +18,6 @@ export default function Login({ callback }) {
 			username2: username,
 			password2: password
 		});
-
 		callback({token: token});
 	};
 	async function loginUser(credentials) {
